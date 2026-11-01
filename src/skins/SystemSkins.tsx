@@ -45,13 +45,22 @@ import {
 export function PhoneSkin(p: Props) {
   const { tab, setTab, q, setQ, items } = useContent(p, "最近通话");
   const [digits, setDigits] = useState(""),
-    [call, setCall] = useState("");
+    [call, setCall] = useState(""),
+    [confirmCall, setConfirmCall] = useState(false),
+    [callEnded, setCallEnded] = useState(false);
+  useEffect(() => {
+    if (!call) return;
+    const timer = window.setTimeout(() => { setCall(""); setCallEnded(true); }, 5000);
+    return () => window.clearTimeout(timer);
+  }, [call]);
   const list = tab === "收藏" ? items.filter((i) => i.favorite) : items;
   return (
     <div className="catalog-skin native-phone">
       <Header p={p} />
       <div className="catalog-scroll">
         <h1>{tab}</h1>
+        {tab === "最近通话" && <button className="call-row" onClick={() => { setCallEnded(false); setConfirmCall(true); }}><Phone size={17}/><span><strong>拨打老公</strong><small>模拟拨出电话</small></span><time>拨打</time></button>}
+        {callEnded && <p className="catalog-empty">对方已挂断</p>}
         {tab === "拨号键盘" ? (
           <div className="dialer">
             <output>{digits || "输入号码"}</output>
@@ -126,13 +135,14 @@ export function PhoneSkin(p: Props) {
         set={setTab}
         icons={[<Star />, <Clock />, <Users />, <Grid />]}
       />
+      {confirmCall && <div className="virtual-call"><small>确认拨打</small><Avatar name="老公" /><h2>老公</h2><p>确定要拨打电话吗？</p><button onClick={() => { setConfirmCall(false); setCall("老公"); }}><Phone /> 拨打</button><button onClick={() => setConfirmCall(false)}>取消</button></div>}
       {call && (
         <div className="virtual-call">
           <small>虚拟通话</small>
           <Avatar name={call} />
           <h2>{call}</h2>
-          <p>这是作品内的通话模拟</p>
-          <button aria-label="挂断" onClick={() => setCall("")}>
+          <p>正在呼叫…</p>
+          <button aria-label="挂断" onClick={() => { setCall(""); setCallEnded(true); }}>
             <Phone />
           </button>
         </div>
