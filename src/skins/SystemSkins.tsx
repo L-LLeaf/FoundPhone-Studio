@@ -314,7 +314,7 @@ export function CameraSkin(p: Props) {
 }
 export function SafariSkin(p: Props) {
   const [q, setQ] = useState(""),
-    [tab, setTab] = useState("书签");
+    [tab, setTab] = useState("历史记录");
   const items = p.items
     .filter((i) =>
       (i.title + i.body + meta(i, "url"))
