@@ -534,8 +534,8 @@ export function ForumSkin(p: Props) {
       <Header p={p} />
       <div className="forum-banner">
         <Hash size={27} />
-        <strong>{board || "论坛"}</strong>
-        <span>{items.length} 个主题</span>
+        <strong>{board || meta(items[0], "groupName", "论坛")}</strong>
+        <span>{meta(items[0], "groupIntro", `${items.length} 个主题`)}</span>
       </div>
       <div className="catalog-scroll">
         <SearchBox value={q} set={setQ} />
@@ -561,11 +561,7 @@ export function ForumSkin(p: Props) {
               </button>
             ))
           : list.map((i) => (
-              <button
-                className="forum-topic"
-                key={i.id}
-                onClick={() => p.onItem(i)}
-              >
+              <div className="forum-topic" key={i.id}>
                 <strong>
                   {meta(i, "status") && <em>{meta(i, "status")}</em>}
                   {i.title}
@@ -579,7 +575,7 @@ export function ForumSkin(p: Props) {
                     {meta(i, "views", "—")} 浏览 · {i.comments.length} 回复
                   </span>
                 </div>
-              </button>
+              </div>
             ))}
       </div>
       <Tabs
