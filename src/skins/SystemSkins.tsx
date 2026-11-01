@@ -737,6 +737,7 @@ export function FilesSkin(p: Props) {
 export function MusicSkin(p: Props) {
   const { tab, setTab, items } = useContent(p, "资料库");
   const [song, setSong] = useTrack(p, items);
+  useEffect(() => { if (!song && items[0]) setSong(items[0]); }, [song, items, setSong]);
   return (
     <div className="catalog-skin native-music">
       <Header p={p} />
@@ -788,7 +789,7 @@ export function MusicSkin(p: Props) {
           {song.kind === "audio" && safeMedia(song.media) ? (
             <AudioPlayer p={p} item={song} />
           ) : (
-            <button onClick={() => p.onItem(song)}>查看歌曲内容</button>
+            <div className="music-track"><span><strong>{song.sender} · {song.title}</strong><small>播放界面预览 · 尚未提供音源</small></span><span>Ⅱ</span></div>
           )}
           <button
             aria-label="下一首"
