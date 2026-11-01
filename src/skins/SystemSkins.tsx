@@ -45,22 +45,23 @@ import {
 export function PhoneSkin(p: Props) {
   const { tab, setTab, q, setQ, items } = useContent(p, "最近通话");
   const [digits, setDigits] = useState(""),
-    [call, setCall] = useState(""),
-    [confirmCall, setConfirmCall] = useState(false),
-    [callEnded, setCallEnded] = useState(false);
+    [call, setCall] = useState<{ name: string; number: string } | null>(null),
+    [phase, setPhase] = useState<"confirm" | "calling" | "ended">("confirm");
   useEffect(() => {
-    if (!call) return;
-    const timer = window.setTimeout(() => { setCall(""); setCallEnded(true); }, 5000);
-    return () => window.clearTimeout(timer);
-  }, [call]);
+    if (phase !== "calling") return;
+    const timer = setTimeout(() => setPhase("ended"), 5000);
+    return () => clearTimeout(timer);
+  }, [phase]);
+  const startCall = (name: string, number: string) => {
+    setCall({ name, number });
+    setPhase("confirm");
+  };
   const list = tab === "收藏" ? items.filter((i) => i.favorite) : items;
   return (
     <div className="catalog-skin native-phone">
       <Header p={p} />
       <div className="catalog-scroll">
         <h1>{tab}</h1>
-        {tab === "最近通话" && <button className="call-row" onClick={() => { setCallEnded(false); setConfirmCall(true); }}><Phone size={17}/><span><strong>拨打老公</strong><small>模拟拨出电话</small></span><time>拨打</time></button>}
-        {callEnded && <p className="catalog-empty">对方已挂断</p>}
         {tab === "拨号键盘" ? (
           <div className="dialer">
             <output>{digits || "输入号码"}</output>
@@ -94,8 +95,8 @@ export function PhoneSkin(p: Props) {
               disabled={!digits}
               aria-label="模拟拨号"
               onClick={() => {
-                setCall(digits);
                 const i = items.find((i) => meta(i, "number") === digits);
+                startCall(i?.title || digits, digits);
                 if (i) p.onRead(i.id);
               }}
             >
@@ -112,7 +113,11 @@ export function PhoneSkin(p: Props) {
               <button
                 className={`call-row ${meta(i, "status") === "未接" ? "missed" : ""}`}
                 key={i.id}
-                onClick={() => p.onItem(i)}
+                onClick={() =>
+                  p.creator
+                    ? p.onItem(i)
+                    : startCall(i.title, meta(i, "number", i.sender))
+                }
               >
                 <Phone size={17} />
                 <span>
@@ -135,16 +140,42 @@ export function PhoneSkin(p: Props) {
         set={setTab}
         icons={[<Star />, <Clock />, <Users />, <Grid />]}
       />
-      {confirmCall && <div className="virtual-call"><small>确认拨打</small><Avatar name="老公" /><h2>老公</h2><p>确定要拨打电话吗？</p><button onClick={() => { setConfirmCall(false); setCall("老公"); }}><Phone /> 拨打</button><button onClick={() => setConfirmCall(false)}>取消</button></div>}
       {call && (
         <div className="virtual-call">
-          <small>虚拟通话</small>
-          <Avatar name={call} />
-          <h2>{call}</h2>
-          <p>正在呼叫…</p>
-          <button aria-label="挂断" onClick={() => { setCall(""); setCallEnded(true); }}>
-            <Phone />
-          </button>
+          {phase === "confirm" ? (
+            <>
+              <small>虚拟通话</small>
+              <Avatar name={call.name} />
+              <h2>{call.name}</h2>
+              <p>{call.number}</p>
+              <div className="virtual-call-actions">
+                <button
+                  className="call-accept"
+                  aria-label={`拨打${call.name}`}
+                  onClick={() => setPhase("calling")}
+                >
+                  <Phone size={22} />
+                </button>
+                <button
+                  className="call-decline"
+                  aria-label="取消呼叫"
+                  onClick={() => setCall(null)}
+                >
+                  <Phone size={22} />
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <small>{phase === "calling" ? "正在呼叫…" : "对方已挂断"}</small>
+              <Avatar name={call.name} />
+              <h2>{call.name}</h2>
+              <p>{phase === "calling" ? call.number : "通话结束"}</p>
+              <button aria-label="挂断" onClick={() => setCall(null)}>
+                <Phone />
+              </button>
+            </>
+          )}
         </div>
       )}
     </div>
@@ -736,8 +767,8 @@ export function FilesSkin(p: Props) {
 }
 export function MusicSkin(p: Props) {
   const { tab, setTab, items } = useContent(p, "资料库");
-  const [song, setSong] = useTrack(p, items);
-  useEffect(() => { if (!song && items[0]) setSong(items[0]); }, [song, items, setSong]);
+  const [track, setSong] = useTrack(p, items);
+  const song = track ?? items[0] ?? null;
   return (
     <div className="catalog-skin native-music">
       <Header p={p} />
@@ -789,7 +820,7 @@ export function MusicSkin(p: Props) {
           {song.kind === "audio" && safeMedia(song.media) ? (
             <AudioPlayer p={p} item={song} />
           ) : (
-            <div className="music-track"><span><strong>{song.sender} · {song.title}</strong><small>播放界面预览 · 尚未提供音源</small></span><span>Ⅱ</span></div>
+            <button onClick={() => p.onItem(song)}>查看歌曲内容</button>
           )}
           <button
             aria-label="下一首"

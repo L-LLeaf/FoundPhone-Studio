@@ -89,16 +89,12 @@ function MessageList({
   onItem,
   onRead,
   whatsapp = false,
-  typing = false,
-  extraMessage = "",
 }: {
   items: Item[];
   creator: boolean;
   onItem: (i: Item) => void;
   onRead: (id: string) => void;
   whatsapp?: boolean;
-  typing?: boolean;
-  extraMessage?: string;
 }) {
   return (
     <div className={`skin-messages ${whatsapp ? "wa-wallpaper" : ""}`}>
@@ -133,8 +129,6 @@ function MessageList({
           {!whatsapp && i.outgoing && <Avatar name={i.sender} src={i.avatar} />}
         </div>
       ))}
-      {typing && <div className="skin-message"><Avatar name="老公" /><div className="skin-bubble">正在输入…</div></div>}
-      {extraMessage && <div className="skin-message outgoing"><div className="skin-bubble">{extraMessage}<small className="wx-message-time">刚刚</small></div><Avatar name="我" /></div>}
     </div>
   );
 }
@@ -169,14 +163,31 @@ export function WeChatSkin(p: SkinProps) {
     "readThreads",
     [],
   );
-  const [typing, setTyping] = useState(false);
-  const [autoSent, setAutoSent] = useState(false);
+  const [typedIds, setTypedIds] = useSkinState<string[]>(p, "typedIds", []);
+  const [typingFor, setTypingFor] = useState("");
+  const threadItems = p.thread
+    ? p.items.filter((i) => i.title === p.thread)
+    : [];
+  const pendingAuto = threadItems.filter(
+    (i) => i.meta?.autoType && !typedIds.includes(i.id),
+  );
+  const shownThreadItems = threadItems.filter(
+    (i) => !i.meta?.autoType || typedIds.includes(i.id),
+  );
   useEffect(() => {
-    if (p.thread !== "老公") { setTyping(false); setAutoSent(false); return; }
-    setTyping(true);
-    const timer = window.setTimeout(() => { setTyping(false); setAutoSent(true); }, 3000);
-    return () => window.clearTimeout(timer);
-  }, [p.thread]);
+    if (!p.thread || !pendingAuto.length || typingFor) return;
+    const delay = Number(pendingAuto[0].meta?.autoType) || 3000;
+    const timer = setTimeout(() => setTypingFor(pendingAuto[0].id), delay);
+    return () => clearTimeout(timer);
+  }, [p.thread, pendingAuto.length, typingFor]);
+  useEffect(() => {
+    if (!typingFor) return;
+    const timer = setTimeout(() => {
+      setTypedIds((v) => (v.includes(typingFor) ? v : [...v, typingFor]));
+      setTypingFor("");
+    }, 1800);
+    return () => clearTimeout(timer);
+  }, [typingFor]);
   const conversations = [
     ...new Set(
       p.items
@@ -235,7 +246,6 @@ export function WeChatSkin(p: SkinProps) {
           {p.thread ? <MoreHorizontal size={22} /> : <CirclePlus size={22} />}
         </button>
       </div>
-      {p.thread === "老公" && <div className="wx-section-label" style={{textAlign:"center"}}>对方已将你拉黑</div>}
       {menu && (
         <div className="wx-popup-menu" role="menu">
           {["搜索", "发起群聊", "添加朋友", "扫一扫", "收付款"].map((label) => (
@@ -293,13 +303,21 @@ export function WeChatSkin(p: SkinProps) {
       ) : p.thread ? (
         <>
           <MessageList
-            items={p.items.filter((i) => i.title === p.thread)}
+            items={shownThreadItems}
             creator={p.creator}
-            typing={p.thread === "老公" && typing}
-            extraMessage={p.thread === "老公" && autoSent ? "老公，我猜到门锁密码了，等我。" : ""}
             onItem={p.onItem}
             onRead={p.onRead}
           />
+          {typingFor && (
+            <div className="wx-autotype" aria-live="polite">
+              <span className="wx-autotype-dots">
+                <i />
+                <i />
+                <i />
+              </span>
+              正在输入…
+            </div>
+          )}
           <Compose creator={p.creator} onAdd={p.onAdd} />
         </>
       ) : moments ? (
@@ -354,7 +372,11 @@ export function WeChatSkin(p: SkinProps) {
                     ),
                 )
                 .map((t) => {
-                  const list = p.items.filter((i) => i.title === t),
+                  const list = p.items.filter(
+                      (i) =>
+                        i.title === t &&
+                        (!i.meta?.autoType || typedIds.includes(i.id)),
+                    ),
                     last = list.at(-1)!;
                   return (
                     <button

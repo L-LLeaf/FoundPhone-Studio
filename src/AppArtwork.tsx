@@ -814,12 +814,18 @@ function DrawnArtwork({ id, date }: { id: string; date?: string }) {
       </text>
     );
   } else if (id === "forum") {
-    background = "#2d89e8";
+    background = "#3aa76d";
     art = (
-      <>
-        <path d="M9 14h46v31H31L19 55V45H9z" fill="white" />
-        <path d="M19 25h26M19 34h19" stroke="#2d89e8" strokeWidth="3" />
-      </>
+      <text
+        x="32"
+        y="46"
+        textAnchor="middle"
+        fontSize="40"
+        fontWeight="800"
+        fill="white"
+      >
+        豆
+      </text>
     );
   }
   const Icon = getApp(id).icon;

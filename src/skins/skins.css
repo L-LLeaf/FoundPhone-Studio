@@ -4130,3 +4130,69 @@
 .catalog-slot[hidden] {
   display: none;
 }
+
+/* FoundPhone story additions: call confirm, typing indicator, forum group header */
+.virtual-call-actions {
+  margin-top: auto;
+  display: flex;
+  gap: 60px;
+}
+.virtual-call-actions button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.virtual-call-actions .call-accept {
+  background: #34c759;
+  transform: none;
+}
+.virtual-call-actions .call-decline {
+  background: #e74b52;
+  transform: rotate(135deg);
+}
+.forum-banner-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.forum-banner-text span {
+  font-size: 9px;
+  color: #8c9cae;
+}
+.forum-banner .catalog-avatar {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+}
+.wx-autotype {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  justify-content: flex-end;
+  padding: 4px 14px 8px;
+  color: #8a8a8a;
+  font-size: 11px;
+  background: #ededed;
+}
+.wx-autotype-dots {
+  display: inline-flex;
+  gap: 3px;
+}
+.wx-autotype-dots i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #9a9a9a;
+  animation: wx-typing 1s infinite;
+}
+.wx-autotype-dots i:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.wx-autotype-dots i:nth-child(3) {
+  animation-delay: 0.4s;
+}
+@keyframes wx-typing {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-2px); }
+}

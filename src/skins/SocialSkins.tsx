@@ -60,7 +60,10 @@ function PostHeader({ item, p }: { item: Item; p: Props }) {
       <Avatar name={item.sender} />
       <span>
         <strong>{item.sender}</strong>
-        <small>{item.time} · IP属地：{meta(item, "ip", "北京")}</small>
+        <small>
+          {item.time}
+          {meta(item, "ip") && ` · IP属地：${meta(item, "ip")}`}
+        </small>
       </span>
     </button>
   );
@@ -89,10 +92,11 @@ function WeiboActions({ p, item }: { p: Props; item: Item }) {
   );
 }
 export function WeiboSkin(p: Props) {
-  const { tab, setTab, q, setQ, items } = useContent(p, "我");
+  const { tab, setTab, q, setQ, items } = useContent(p, "关注");
   const [feed, setFeed] = useState("全部");
-  const ordered = [...items].sort((a, b) => b.time.localeCompare(a.time));
-  const list = (feed === "全部" ? ordered : ordered.filter((i) => i.folder === feed));
+  const list = feed === "全部" ? items : items.filter((i) => i.folder === feed);
+  const profileItem = items.find((i) => meta(i, "weiboCount")) ?? items[0];
+  const profileName = profileItem?.sender || p.owner || "我";
   return (
     <div className="catalog-skin weibo-ui">
       <Header p={p} />
@@ -110,10 +114,15 @@ export function WeiboSkin(p: Props) {
       <div className="catalog-scroll">
         {tab === "我" ? (
           <div className="weibo-profile">
-            <Avatar name={p.owner ?? "我"} />
-            <h2>{p.owner ?? "我"}</h2>
-            <span>{meta(items[0], "totalCount", "112")} 条微博</span>
-            <div className="weibo-feed-filter"><span>关注 {meta(items[0], "following", "1")}</span><span>粉丝 {meta(items[0], "followers", "0")}</span><span>IP属地：北京</span></div>
+            <Avatar name={profileName} src={profileItem?.avatar} />
+            <h2>{profileName}</h2>
+            <span>
+              {profileItem ? meta(profileItem, "weiboCount", String(items.length)) : items.length}{" "}
+              条微博
+            </span>
+            {profileItem && meta(profileItem, "profileIp") && (
+              <span>IP属地：{meta(profileItem, "profileIp")}</span>
+            )}
           </div>
         ) : (
           <>
@@ -529,13 +538,25 @@ export function ForumSkin(p: Props) {
   const list = board
     ? items.filter((i) => (i.folder || "未分类") === board)
     : items;
+  const groupItem = items.find((i) => meta(i, "groupIntro") || i.avatar);
+  const groupName = groupItem?.folder || board || "论坛";
+  const groupAvatar = groupItem?.avatar ?? "";
   return (
     <div className="catalog-skin forum-ui">
       <Header p={p} />
       <div className="forum-banner">
-        <Hash size={27} />
-        <strong>{board || meta(items[0], "groupName", "论坛")}</strong>
-        <span>{meta(items[0], "groupIntro", `${items.length} 个主题`)}</span>
+        {groupAvatar ? (
+          <Avatar name={groupName} src={groupAvatar} />
+        ) : (
+          <Hash size={27} />
+        )}
+        <div className="forum-banner-text">
+          <strong>{board || groupName}</strong>
+          {groupItem && meta(groupItem, "groupIntro") && !board && (
+            <small>{meta(groupItem, "groupIntro")}</small>
+          )}
+          <span>{list.length} 个主题</span>
+        </div>
       </div>
       <div className="catalog-scroll">
         <SearchBox value={q} set={setQ} />
@@ -561,7 +582,11 @@ export function ForumSkin(p: Props) {
               </button>
             ))
           : list.map((i) => (
-              <div className="forum-topic" key={i.id}>
+              <button
+                className="forum-topic"
+                key={i.id}
+                onClick={() => p.onItem(i)}
+              >
                 <strong>
                   {meta(i, "status") && <em>{meta(i, "status")}</em>}
                   {i.title}
@@ -575,7 +600,7 @@ export function ForumSkin(p: Props) {
                     {meta(i, "views", "—")} 浏览 · {i.comments.length} 回复
                   </span>
                 </div>
-              </div>
+              </button>
             ))}
       </div>
       <Tabs
