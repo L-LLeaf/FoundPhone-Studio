@@ -172,7 +172,7 @@ export function WeChatSkin(p: SkinProps) {
   const [typing, setTyping] = useState(false);
   const [autoSent, setAutoSent] = useState(false);
   useEffect(() => {
-    if (p.thread !== "老公") { setTyping(false); return; }
+    if (p.thread !== "老公") { setTyping(false); setAutoSent(false); return; }
     setTyping(true);
     const timer = window.setTimeout(() => { setTyping(false); setAutoSent(true); }, 3000);
     return () => window.clearTimeout(timer);
