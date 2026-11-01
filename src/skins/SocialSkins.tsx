@@ -89,9 +89,10 @@ function WeiboActions({ p, item }: { p: Props; item: Item }) {
   );
 }
 export function WeiboSkin(p: Props) {
-  const { tab, setTab, q, setQ, items } = useContent(p, "关注");
+  const { tab, setTab, q, setQ, items } = useContent(p, "我");
   const [feed, setFeed] = useState("全部");
-  const list = feed === "全部" ? items : items.filter((i) => i.folder === feed);
+  const ordered = [...items].sort((a, b) => b.time.localeCompare(a.time));
+  const list = (feed === "全部" ? ordered : ordered.filter((i) => i.folder === feed));
   return (
     <div className="catalog-skin weibo-ui">
       <Header p={p} />
@@ -111,7 +112,8 @@ export function WeiboSkin(p: Props) {
           <div className="weibo-profile">
             <Avatar name={p.owner ?? "我"} />
             <h2>{p.owner ?? "我"}</h2>
-            <span>{items.length} 条微博</span>
+            <span>{meta(items[0], "totalCount", "112")} 条微博</span>
+            <div className="weibo-feed-filter"><span>关注 {meta(items[0], "following", "1")}</span><span>粉丝 {meta(items[0], "followers", "0")}</span><span>IP属地：北京</span></div>
           </div>
         ) : (
           <>
