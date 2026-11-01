@@ -60,7 +60,7 @@ function PostHeader({ item, p }: { item: Item; p: Props }) {
       <Avatar name={item.sender} />
       <span>
         <strong>{item.sender}</strong>
-        <small>{meta(item, "handle", item.time)}</small>
+        <small>{item.time} · IP属地：{meta(item, "ip", "北京")}</small>
       </span>
     </button>
   );
