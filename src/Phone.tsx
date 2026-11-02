@@ -28,6 +28,7 @@ import { catalogSkins } from "./skins/catalog";
 import "./skins/skins.css";
 import "./ios18.css";
 import "./device-system.css";
+import "./visual-refinement.css";
 import "./ios/tokens.css";
 import "./ios/reference.css";
 import "./ios/status-bar.css";
