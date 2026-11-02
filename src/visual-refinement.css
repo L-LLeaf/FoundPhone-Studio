@@ -196,3 +196,47 @@
 .ios18 .douban-topic-thumb { width:78px;height:62px;object-fit:cover;border-radius:7px;align-self:center; }
 .ios18 .weibo-cover { background-image:linear-gradient(180deg,#d7e8e7 0%,#c7d7d4 36%,#e5d7bd 62%,#c4ad8c 100%)!important;background-size:cover!important;background-position:center 52%!important; }
 .ios18 .weibo-follow { display:none!important; }
+
+
+/* Consistent iPhone navigation affordance and touch targets across app screens. */
+.ios18 .app-screen .catalog-nav > button:first-child,
+.ios18 .app-screen .apple-music-top > button:first-child,
+.ios18 .app-screen .douban-topline > button:first-child,
+.ios18 .app-screen .weibo-cover > button:first-child {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #1877d2;
+  background: #e8f2fc;
+  transition: transform .16s ease, background .16s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.ios18 .app-screen .catalog-nav > button:first-child:active,
+.ios18 .app-screen .apple-music-top > button:first-child:active,
+.ios18 .app-screen .douban-topline > button:first-child:active,
+.ios18 .app-screen .weibo-cover > button:first-child:active {
+  transform: scale(.92);
+  background: #d9eafb;
+}
+.ios18 .app-screen .catalog-nav {
+  min-height: 54px;
+}
+.ios18 .app-screen .catalog-nav strong {
+  font-weight: 650;
+}
+
+/* A subtle lower fade keeps the bottom attribution area out of the lock-screen focus. */
+.ios18 .phone-screen.is-locked.wallpaper-custom::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 34px;
+  background: linear-gradient(180deg, transparent 0%, rgba(17, 20, 24, .42) 100%);
+}
