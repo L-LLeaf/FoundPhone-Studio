@@ -1,7 +1,7 @@
 import { useSkinState } from "../skinState";
 import {
   ArrowDown,
-  ArrowUp,
+  ChevronLeft,
   AtSign,
   Bookmark,
   Camera,
@@ -83,7 +83,7 @@ export function WeiboSkin(p: Props) {
   return (
     <div className="catalog-skin weibo-ui weibo-profile-page">
       <div className="weibo-cover">
-        <button aria-label="返回" onClick={p.onBack}><ArrowUp size={20} /></button>
+        <button aria-label="返回" onClick={p.onBack}><ChevronLeft size={22} /></button>
         <div>
           <button aria-label="搜索"><Search size={20} /></button>
           <button aria-label="设置" onClick={() => setMore(!more)}><Settings size={20} /></button>
