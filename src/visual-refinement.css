@@ -123,3 +123,76 @@
   border-radius:48% 48% 18% 18% / 58% 58% 20% 20%;
   background:#fff;
 }
+
+
+/* Apple Music-inspired now-playing screen */
+.ios18 .apple-music-screen { background:#f5f6f8; color:#202126; display:flex; flex-direction:column; }
+.ios18 .apple-music-top { height:54px; flex:0 0 54px; display:flex; align-items:center; justify-content:space-between; padding:0 17px; color:#8c8d92; }
+.ios18 .apple-music-top button { background:none;border:0;color:#8c8d92;display:grid;place-items:center;min-width:34px; }
+.ios18 .apple-music-top span { font-size:12px;letter-spacing:.2px;font-weight:600; }
+.ios18 .music-more-dots { font-size:20px!important;letter-spacing:2px!important; }
+.ios18 .apple-music-content { flex:1;overflow:auto;padding:23px 25px 12px;display:flex;flex-direction:column; }
+.ios18 .apple-album-art { position:relative; width:min(100%,300px);aspect-ratio:1;margin:10px auto 32px;border-radius:13px;overflow:hidden;background:linear-gradient(145deg,#b6f1ef 0%,#5ad7d8 43%,#d5fbf8 100%);box-shadow:0 15px 34px #1b58651f,inset 0 1px 1px #fff; }
+.ios18 .album-art-glow { position:absolute;inset:-15%;background:radial-gradient(ellipse at 38% 43%,#fff7a9 0 3%,transparent 4%),radial-gradient(ellipse at 52% 48%,#fff9 0 1%,transparent 2%),radial-gradient(ellipse at 72% 68%,#fff 0 2%,transparent 3%),linear-gradient(130deg,transparent 20%,#22c4cf99 21% 40%,transparent 41% 60%,#fff6 61%);filter:blur(.5px); }
+.ios18 .album-art-mark { position:absolute;inset:0;display:grid;place-items:center;color:#ffe45d;text-shadow:0 2px 0 #2694ce,3px 4px 0 #1475c6;font-size:120px;font-weight:300; }
+.ios18 .album-art-mark i { position:absolute;right:16%;bottom:16%;font-size:42px;color:white;font-style:normal;text-shadow:none; }
+.ios18 .apple-track-title { display:flex;align-items:center;justify-content:space-between;gap:12px; }
+.ios18 .apple-track-title div { min-width:0;display:flex;flex-direction:column;gap:5px; }
+.ios18 .apple-track-title strong { font-size:21px;letter-spacing:-.45px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.ios18 .apple-track-title small { color:#888b91;font-size:14px; }
+.ios18 .apple-track-title button { border:0;background:none;color:#92949a; }
+.ios18 .apple-progress { margin-top:28px; }
+.ios18 .apple-progress-track { height:4px;border-radius:5px;background:#d9dbe0;overflow:hidden; }
+.ios18 .apple-progress-track i { display:block;height:100%;background:#777b83;border-radius:5px;transition:width .15s linear; }
+.ios18 .apple-progress>div:last-child { display:flex;justify-content:space-between;margin-top:7px;color:#9b9da3;font-variant-numeric:tabular-nums; }
+.ios18 .apple-controls { display:flex;align-items:center;justify-content:space-around;margin:23px 8px 17px;color:#24262a; }
+.ios18 .apple-controls button { border:0;background:none;color:inherit;display:grid;place-items:center; }
+.ios18 .apple-play { width:62px;height:62px;border-radius:50%!important;background:#24262a!important;color:white!important;box-shadow:0 5px 14px #0002; }
+.ios18 .play-glyph { font-size:22px;margin-left:3px; }
+.ios18 .pause-glyph { font-size:25px;font-weight:700; }
+.ios18 .music-prev { transform:rotate(180deg); }
+.ios18 .apple-audio-hint { text-align:center;color:#a1a3a8;font-size:11px;margin:0 0 13px; }
+.ios18 .apple-track-details { display:flex;flex-direction:column;gap:10px;padding:16px 14px;border-radius:13px;background:#ebedf0;color:#73767d;font-size:12px; }
+.ios18 .apple-music-bottom { flex:0 0 49px;display:flex;align-items:center;justify-content:space-around;border-top:1px solid #e3e4e7;background:#f8f8fa; }
+.ios18 .apple-music-bottom button { border:0;background:none;color:#7d8087;font-size:12px; }
+.ios18 .apple-music-screen audio { display:none; }
+
+/* Douban group screen follows the supplied red group-header / discussion-list reference. */
+.ios18 .douban-group-screen { background:#fff;display:flex;flex-direction:column;color:#242424; }
+.ios18 .douban-red-head { flex:0 0 auto;background:#e83e50;color:#fff;padding:8px 16px 16px; }
+.ios18 .douban-topline { display:flex;align-items:center;gap:12px;height:46px; }
+.ios18 .douban-topline button { border:0;background:none;color:#fff;min-width:28px;font-size:19px; }
+.ios18 .douban-topline label { flex:1;display:flex;align-items:center;gap:7px;background:#ffffff32;border-radius:24px;padding:8px 13px;color:#ffffffb8; }
+.ios18 .douban-topline input { width:100%;border:0;outline:0;background:transparent;color:#fff;font-size:12px; }
+.ios18 .douban-topline input::placeholder { color:#ffffffbd; }
+.ios18 .douban-group-summary { display:flex;align-items:center;gap:12px;padding:14px 0 13px; }
+.ios18 .douban-group-summary .catalog-avatar { width:62px;height:62px;flex:0 0 62px;border-radius:12px; }
+.ios18 .douban-group-summary>div { min-width:0;display:flex;flex-direction:column;gap:5px; }
+.ios18 .douban-group-summary strong { font-size:17px; }
+.ios18 .douban-group-summary small { font-size:12px;color:#ffffffb8; }
+.ios18 .douban-joined { margin-left:auto;white-space:nowrap;padding:7px 11px;border-radius:10px;background:#ffffff26;font-size:12px; }
+.ios18 .douban-group-rules { color:#ffffffc9;font-size:12px;line-height:1.65; }
+.ios18 .douban-group-rules p { margin:3px 0;display:flex;align-items:center;gap:4px; }
+.ios18 .douban-group-rules b { color:#fff;font-weight:600;white-space:nowrap; }
+.ios18 .douban-categories { flex:0 0 43px;display:flex;align-items:stretch;justify-content:space-around;gap:4px;border-bottom:1px solid #ededed;background:#fff; }
+.ios18 .douban-categories button { border:0;background:none;color:#888;padding:0 7px;white-space:nowrap;font-size:12px;position:relative; }
+.ios18 .douban-categories button.selected { color:#333;font-weight:600; }
+.ios18 .douban-categories button.selected:after { content:"";position:absolute;bottom:5px;left:35%;right:35%;height:2px;background:#222;border-radius:2px; }
+.ios18 .douban-discussion-head { flex:0 0 43px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:1px solid #f0f0f0; }
+.ios18 .douban-discussion-head strong { font-size:13px;font-weight:600; }
+.ios18 .douban-discussion-head>div { display:flex;background:#f5f5f5;border-radius:10px;padding:2px; }
+.ios18 .douban-discussion-head button { border:0;background:none;color:#888;font-size:11px;padding:5px 8px;border-radius:8px; }
+.ios18 .douban-discussion-head button.selected { background:#fff;color:#222;box-shadow:0 1px 3px #00000012; }
+.ios18 .douban-topic-list { flex:1;min-height:0; }
+.ios18 .douban-topic { width:100%;display:flex;align-items:flex-start;gap:11px;text-align:left;padding:16px 14px 14px;border:0;border-bottom:1px solid #f0f0f0;background:#fff;color:#333; }
+.ios18 .douban-reply-count { flex:0 0 25px;display:flex;flex-direction:column;align-items:center;gap:4px;color:#a4a4a4;font-size:11px; }
+.ios18 .douban-reply-count i { font-size:12px;font-style:normal;color:#f4b36f; }
+.ios18 .douban-topic-main { flex:1;min-width:0; }
+.ios18 .douban-topic-main>strong { display:block;font-size:13px;font-weight:500;line-height:1.55;color:#424242; }
+.ios18 .douban-topic-main>p { margin:5px 0 10px;font-size:11px;line-height:1.5;color:#9a9a9a;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden; }
+.ios18 .douban-topic-meta { display:flex;align-items:center;gap:7px;color:#999;font-size:10px; }
+.ios18 .douban-mini-avatar { width:20px;height:20px;border-radius:50%;background:#f4d8d7;color:#a06e70;display:grid;place-items:center;font-size:10px; }
+.ios18 .douban-topic-meta small { color:#b1b1b1; }
+.ios18 .douban-topic-thumb { width:78px;height:62px;object-fit:cover;border-radius:7px;align-self:center; }
+.ios18 .weibo-cover { background-image:linear-gradient(#17272a08,#17272a12),url("https://raw.githubusercontent.com/L-LLeaf/FoundPhone-Studio/main/public/assets/weibo-cover.jpg")!important;background-size:cover!important;background-position:center 52%!important; }
+.ios18 .weibo-follow { display:none!important; }
