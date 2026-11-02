@@ -70,29 +70,6 @@ function PostHeader({ item, p }: { item: Item; p: Props }) {
     </button>
   );
 }
-function WeiboActions({ p, item }: { p: Props; item: Item }) {
-  const [liked, setLiked] = useSkinState<boolean>(p, `liked-${item.id}`, false);
-  return (
-    <div className="social-actions weibo-actions">
-      <button aria-label={`转发${item.title}`} onClick={() => p.onItem(item)}>
-        <Share2 size={17} />
-        {meta(item, "reposts", "转发")}
-      </button>
-      <button aria-label={`评论${item.title}`} onClick={() => p.onItem(item)}>
-        <MessageCircle size={17} />
-        {item.comments.length || "评论"}
-      </button>
-      <button
-        aria-label={`喜欢${item.title}`}
-        aria-pressed={liked}
-        onClick={() => setLiked(!liked)}
-      >
-        <ThumbsUp size={17} fill={liked ? "currentColor" : "none"} />
-        {item.likes + (liked ? 1 : 0) || "赞"}
-      </button>
-    </div>
-  );
-}
 export function WeiboSkin(p: Props) {
   const { items } = useContent(p, "微博");
   const profileItem = items.find((i) => meta(i, "weiboCount")) ?? items[0];
@@ -138,7 +115,7 @@ export function WeiboSkin(p: Props) {
           <article className="weibo-post" key={i.id}>
             <div className="weibo-post-head">
               <Avatar name={profileName} src={profileItem?.avatar} />
-              <div><strong>{profileName}</strong><small>{i.time.slice(5, 10)}　来自 Xiaomi 15 Pro</small></div>
+              <div><strong>{profileName}</strong><small>{i.time.slice(5, 10)} 来自 Xiaomi 15 Pro</small></div>
               <span className="weibo-read-count">{meta(i, "reads", "77")}<small>阅读</small></span>
             </div>
             <button className="social-body" onClick={() => p.onItem(i)}>
