@@ -1,0 +1,93 @@
+/* FoundPhone visual refinement pass: native iPhone materials, spacing and depth. */
+.ios18.phone-shell {
+  background: linear-gradient(115deg,#b8bbc1 0%,#24262b 5%,#08090c 17%,#303238 88%,#9b9da2 100%);
+  box-shadow: 0 0 0 1px #ffffff55,0 0 0 3px #111319,0 26px 70px #0005;
+}
+.ios18 .phone-screen {
+  overflow: hidden;
+  background-color: #d8d9d7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.ios18 .wallpaper-sage {
+  background:
+    radial-gradient(ellipse at 18% 12%,#f6e8cf 0%,transparent 37%),
+    radial-gradient(ellipse at 86% 30%,#b7c9c0 0%,transparent 43%),
+    radial-gradient(ellipse at 48% 92%,#82988e 0%,transparent 58%),
+    linear-gradient(145deg,#d8d9ca 0%,#b5c4b8 48%,#718b82 100%);
+}
+.ios18 .wallpaper-orb { opacity:.16; filter:blur(42px); }
+.ios18 .wallpaper-orb.orb-one { background:#fff1d5; }
+.ios18 .wallpaper-orb.orb-two { background:#557b70; }
+.ios18 .status-bar { font-variant-numeric:tabular-nums; letter-spacing:-.35px; }
+.ios18 .dynamic-island { box-shadow:inset 0 1px 2px #ffffff18,0 1px 3px #0006; }
+.ios18 .home-screen { padding-top:78px; }
+.ios18 .home-app-grid { padding:0 21px; grid-template-rows:repeat(6,91px); grid-auto-rows:91px; }
+.ios18 .app-icon {
+  border-radius:15px;
+  box-shadow:inset 0 1px 1px #ffffff90,inset 0 -1px 2px #0002,0 3px 7px #0002;
+  transition:transform .16s cubic-bezier(.2,.8,.2,1),filter .16s;
+}
+.ios18 .app-icon-wrap:active .app-icon { transform:scale(.92); filter:brightness(.94); }
+.ios18 .app-name { font-size:11.5px; font-weight:500; letter-spacing:-.15px; text-shadow:0 1px 5px #0009; }
+.ios18 .dock {
+  margin:0 11px 3px; height:91px; min-height:91px;
+  border-radius:29px; background:#f4f4f44a;
+  border:1px solid #ffffff38;
+  box-shadow:inset 0 1px 1px #ffffff65,0 8px 24px #00000012;
+  backdrop-filter:blur(34px) saturate(1.75);
+}
+.ios18 .home-page-dots { margin-bottom:3px; }
+.ios18 .home-search { background:#ffffff30;border:1px solid #ffffff22;backdrop-filter:blur(20px); }
+.ios18 .app-screen {
+  background:#f2f2f7;
+  box-shadow:0 -8px 28px #0000000c;
+}
+.ios18 .app-screen .catalog-nav {
+  min-height:48px;
+  padding-left:9px;padding-right:9px;
+  background:#f8f8f8ed;
+  border-bottom:.5px solid #d8d8dc;
+  backdrop-filter:blur(24px) saturate(1.6);
+}
+.ios18 .app-screen .catalog-nav strong { font-size:16px;letter-spacing:-.25px; }
+.ios18 .catalog-skin { font-size:13px; }
+.ios18 .catalog-row { min-height:66px;padding:12px 16px;gap:13px; }
+.ios18 .catalog-row strong { font-size:14px;font-weight:500; }
+.ios18 .catalog-row p { font-size:12px; }
+.ios18 .catalog-avatar { box-shadow:0 1px 3px #00000012; }
+.ios18 .catalog-tabs { min-height:58px;padding:6px 8px 8px;background:#fafafae8;border-top:.5px solid #dedee2;backdrop-filter:blur(24px); }
+.ios18 .catalog-tabs button { font-size:10px; }
+.ios18 .catalog-tabs svg { width:21px;height:21px; }
+.ios18 .native-settings { background:#f2f1f7; }
+.ios18 .native-settings .settings-account,
+.ios18 .native-settings .settings-group { box-shadow:0 2px 9px #24243a08; }
+.ios18 .wechat-ui .wx-nav,
+.ios18 .wechat-ui .wx-bottom { backdrop-filter:blur(20px); }
+.ios18 .weibo-profile-page { background:#f2f2f7; }
+.ios18 .weibo-cover {
+  height:145px;flex-basis:145px;
+  background:
+    linear-gradient(180deg,#263a3c26,#1b272b12),
+    radial-gradient(ellipse at 18% 0%,#e8e0ca 0%,transparent 52%),
+    linear-gradient(135deg,#9cb9b4,#d4c8ad 55%,#8d9b91);
+}
+.ios18 .weibo-account { padding-top:2px; }
+.ios18 .weibo-account > .catalog-avatar { width:82px;height:82px;flex-basis:82px;border:3px solid white;box-shadow:0 2px 9px #0002; }
+.ios18 .weibo-account-main h2 { font-size:20px;letter-spacing:-.4px; }
+.ios18 .weibo-stats { padding-top:7px;padding-bottom:14px; }
+.ios18 .weibo-profile-tabs { background:#fff;height:49px; }
+.ios18 .weibo-profile-tabs button { font-size:14px; }
+.ios18 .weibo-original-bar { background:#f0f0f2;height:39px; }
+.ios18 .weibo-profile-page .weibo-post { padding:15px 14px 2px;margin-bottom:8px; }
+.ios18 .weibo-profile-page .weibo-post-head .catalog-avatar { width:40px;height:40px; }
+.ios18 .weibo-profile-page .weibo-post-head strong { font-size:14px; }
+.ios18 .weibo-profile-page .weibo-post-head small { font-size:11px; }
+.ios18 .weibo-profile-page .weibo-post > .social-body { font-size:15px;line-height:1.65; }
+.ios18 .weibo-profile-page .weibo-post .social-actions button { font-size:13px; }
+.ios18 .lock-notice { box-shadow:0 5px 18px #00000010; }
+.ios18 .device-passcode .pin-keypad button { background:#ffffff24;border:1px solid #ffffff22; }
+.ios18 .system-panel { box-shadow:0 0 0 1px #ffffff10; }
+@media (max-width:420px) {
+  .ios18 .home-app-grid { grid-template-rows:repeat(6,88px);grid-auto-rows:88px; }
+}
