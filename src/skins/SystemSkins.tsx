@@ -771,12 +771,12 @@ export function MusicSkin(p: Props) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const [elapsed, setElapsed] = useState(0);
-  const duration = 5;
+  const [duration, setDuration] = useState(0);
   const toggle = async () => {
     const audio = audioRef.current;
     if (!audio || !song || !safeMedia(song.media)) return;
     if (playing) { audio.pause(); setPlaying(false); return; }
-    if (audio.currentTime >= duration || audio.ended) audio.currentTime = 0;
+    if (audio.ended) audio.currentTime = 0;
     try { await audio.play(); setPlaying(true); } catch { setPlaying(false); }
   };
   useEffect(() => {
@@ -802,21 +802,20 @@ export function MusicSkin(p: Props) {
           </div>
           <div className="apple-progress">
             <div className="apple-progress-track"><i style={{width: `${Math.min(100, elapsed / duration * 100)}%`}} /></div>
-            <div><small>0:{String(Math.floor(elapsed)).padStart(2,"0")}</small><small>0:05 片段</small></div>
+            <div><small>{Math.floor(elapsed / 60)}:{String(Math.floor(elapsed % 60)).padStart(2,"0")}</small><small>{Math.floor(duration / 60)}:{String(Math.floor(duration % 60)).padStart(2,"0")}</small></div>
           </div>
           <div className="apple-controls">
             <button aria-label="上一首" onClick={() => setElapsed(0)}><SkipForward className="music-prev" size={25} /></button>
-            <button className="apple-play" aria-label={playing ? "暂停" : "播放5秒"} onClick={toggle}>
+            <button className="apple-play" aria-label={playing ? "暂停" : "播放"} onClick={toggle}>
               {playing ? <span className="pause-glyph">Ⅱ</span> : <span className="play-glyph">▶</span>}
             </button>
             <button aria-label="下一首" onClick={() => setElapsed(0)}><SkipForward size={25} /></button>
           </div>
           {safeMedia(song.media) ? (
             <audio ref={audioRef} src={safeMedia(song.media)} preload="metadata"
-              onTimeUpdate={(e) => {
-                const t=e.currentTarget.currentTime; setElapsed(Math.min(t,duration));
-                if (t >= duration) { e.currentTarget.pause(); e.currentTarget.currentTime=0; setPlaying(false); setElapsed(0); }
-              }}
+              onLoadedMetadata={(e) => setDuration(Number.isFinite(e.currentTarget.duration) ? e.currentTarget.duration : 0)}
+              onDurationChange={(e) => setDuration(Number.isFinite(e.currentTarget.duration) ? e.currentTarget.duration : 0)}
+              onTimeUpdate={(e) => setElapsed(e.currentTarget.currentTime)}
               onEnded={() => {setPlaying(false);setElapsed(0);}} />
           ) : (
             <p className="apple-audio-hint">添加音频后，可试听前 5 秒</p>
