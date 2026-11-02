@@ -194,5 +194,5 @@
 .ios18 .douban-mini-avatar { width:20px;height:20px;border-radius:50%;background:#f4d8d7;color:#a06e70;display:grid;place-items:center;font-size:10px; }
 .ios18 .douban-topic-meta small { color:#b1b1b1; }
 .ios18 .douban-topic-thumb { width:78px;height:62px;object-fit:cover;border-radius:7px;align-self:center; }
-.ios18 .weibo-cover { background-image:linear-gradient(#17272a08,#17272a12),url("https://raw.githubusercontent.com/L-LLeaf/FoundPhone-Studio/main/public/assets/weibo-cover.jpg")!important;background-size:cover!important;background-position:center 52%!important; }
+.ios18 .weibo-cover { background-image:linear-gradient(180deg,#d7e8e7 0%,#c7d7d4 36%,#e5d7bd 62%,#c4ad8c 100%)!important;background-size:cover!important;background-position:center 52%!important; }
 .ios18 .weibo-follow { display:none!important; }
