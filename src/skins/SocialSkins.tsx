@@ -566,9 +566,6 @@ export function ForumSkin(p: Props) {
     </div>
   );
 }
-function FolderIcon() {
-  return <Hash size={27} />;
-}
 export function SnapchatSkin(p: Props) {
   const { tab, setTab, items } = useContent(p, "快拍");
   const [index, setIndex] = useState(0);
