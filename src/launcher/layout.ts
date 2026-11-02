@@ -59,6 +59,13 @@ export function defaultLayout(input: Work): DeviceLayout {
     workId: w.id,
     previewLayoutRevision: w.id === "ui-test-phone-v2" ? 1 : 0,
     apps: structuredClone(w.apps)
+      .map((a) => {
+        const native = new Set(["appstore","phone","messages","contacts","photos","camera","safari","notes","calendar","mail","clock","reminders","files","music","maps","weather","wallet","health","find","calculator","settings"]);
+        const storyApps = new Set(["douban","weibo","wechat"]);
+        return native.has(a.id) || storyApps.has(a.id)
+          ? a
+          : { ...a, visible: false, dock: false, folder: "" };
+      })
       .sort((a, b) => (a.id === "appstore" ? -1 : b.id === "appstore" ? 1 : 0))
       .map((a) =>
         a.id === "appstore"
@@ -133,7 +140,7 @@ export function validateLayout(raw: unknown, input: Work) {
 }
 export function useDeviceLayout(authored: Work, creator = false) {
   const base = useMemo(() => ensureAppStore(authored), [authored]);
-  const key = "foundphone-layout-v1:" + base.id;
+  const key = "foundphone-layout-v2:" + base.id;
   const [stored, setStored] = useState(() => {
       try {
         const text = localStorage.getItem(key);
