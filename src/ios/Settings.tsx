@@ -92,7 +92,7 @@ export function NativeSettings({
       case "关于本机":
         return (
           <div className="settings-group">
-            {row("名称", work.phone.owner + "的 iPhone")}
+            {row("名称", "sxh的🐶的 iPhone")}
             {row("iOS 版本", "18.0")}
             {row("机型名称", "iPhone 15 Pro")}
             {row("照片", String(work.data.photos?.length || 0))}
@@ -206,11 +206,11 @@ export function NativeSettings({
             {!query && (
               <button
                 className="settings-account"
-                onClick={() => nav.push(work.phone.owner)}
+                onClick={() => nav.push("sxh的🐶")}
               >
                 <span>{work.phone.owner.slice(0, 1)}</span>
                 <div>
-                  <strong>{work.phone.owner}</strong>
+                  <strong>sxh的🐶</strong>
                   <small>Apple 账户、iCloud 与更多</small>
                 </div>
                 <ChevronRight size={17} />
