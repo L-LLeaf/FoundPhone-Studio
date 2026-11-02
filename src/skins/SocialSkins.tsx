@@ -16,6 +16,8 @@ import {
   Users,
   Share2,
   ThumbsUp,
+  Search,
+  Settings,
 } from "lucide-react";
 import { useState } from "react";
 import type { Item } from "../schema";
@@ -92,63 +94,67 @@ function WeiboActions({ p, item }: { p: Props; item: Item }) {
   );
 }
 export function WeiboSkin(p: Props) {
-  const { tab, setTab, q, setQ, items } = useContent(p, "关注");
-  const [feed, setFeed] = useState("全部");
-  const list = feed === "全部" ? items : items.filter((i) => i.folder === feed);
+  const { items } = useContent(p, "微博");
   const profileItem = items.find((i) => meta(i, "weiboCount")) ?? items[0];
-  const profileName = profileItem?.sender || p.owner || "我";
+  const profileName = profileItem?.sender || p.owner || "m0on_7xq__";
+  const [tab, setTab] = useState("微博");
+  const [more, setMore] = useState(false);
+  const count = (key: string, fallback: string) =>
+    profileItem ? meta(profileItem, key, fallback) : fallback;
+  const posts = [...items].sort((a, b) => b.time.localeCompare(a.time));
   return (
-    <div className="catalog-skin weibo-ui">
-      <Header p={p} />
-      <div className="weibo-sections">
-        {["关注", "发现", "我"].map((t) => (
-          <button
-            key={t}
-            className={tab === t ? "selected" : ""}
-            onClick={() => setTab(t)}
-          >
-            {t}
-          </button>
-        ))}
+    <div className="catalog-skin weibo-ui weibo-profile-page">
+      <div className="weibo-cover">
+        <button aria-label="返回" onClick={p.onBack}><ArrowUp size={20} /></button>
+        <div>
+          <button aria-label="搜索"><Search size={20} /></button>
+          <button aria-label="设置" onClick={() => setMore(!more)}><Settings size={20} /></button>
+        </div>
       </div>
-      <div className="catalog-scroll">
-        {tab === "我" ? (
-          <div className="weibo-profile">
-            <Avatar name={profileName} src={profileItem?.avatar} />
-            <h2>{profileName}</h2>
-            <span>
-              {profileItem ? meta(profileItem, "weiboCount", String(items.length)) : items.length}{" "}
-              条微博
-            </span>
-            {profileItem && meta(profileItem, "profileIp") && (
-              <span>IP属地：{meta(profileItem, "profileIp")}</span>
-            )}
-          </div>
-        ) : (
-          <>
-            <SearchBox value={q} set={setQ} />
-            <div className="weibo-feed-filter">
-              {["全部", ...groupItems(items).filter((g) => g !== "未分类")].map(
-                (g) => (
-                  <button key={g} onClick={() => setFeed(g)}>
-                    {g}
-                  </button>
-                ),
-              )}
-            </div>
-          </>
-        )}
-        {list.map((i) => (
+      {more && <div className="weibo-more-menu">账号资料 · 设置</div>}
+      <section className="weibo-account">
+        <Avatar name={profileName} src={profileItem?.avatar} />
+        <div className="weibo-account-main">
+          <h2>{profileName}</h2>
+          <span className="weibo-account-tag">♀</span>
+          <span className="weibo-online">在线 ›</span>
+        </div>
+        <button className="weibo-follow">＋ 关注</button>
+      </section>
+      <div className="weibo-stats">
+        <span><b>{count("followers", "0")}</b> 粉丝</span>
+        <span><b>{count("following", "1")}</b> 关注</span>
+        <span><b>{count("likes", "61")}</b> 转评赞</span>
+      </div>
+      <nav className="weibo-profile-tabs">
+        {["精选", "微博", "超话", "相册"].map((t) => (
+          <button key={t} className={tab === t ? "selected" : ""} onClick={() => setTab(t)}>{t}</button>
+        ))}
+        <button aria-label="更多" onClick={() => setMore(!more)}>＋</button>
+      </nav>
+      <div className="weibo-original-bar"><span>原创微博</span><span>☷ 筛选</span></div>
+      <div className="catalog-scroll weibo-timeline">
+        {tab === "微博" || tab === "精选" ? posts.map((i) => (
           <article className="weibo-post" key={i.id}>
-            <PostHeader p={p} item={i} />
+            <div className="weibo-post-head">
+              <Avatar name={profileName} src={profileItem?.avatar} />
+              <div><strong>{profileName}</strong><small>{i.time.slice(5, 10)}　来自 Xiaomi 15 Pro</small></div>
+              <span className="weibo-read-count">{meta(i, "reads", "77")}<small>阅读</small></span>
+            </div>
             <button className="social-body" onClick={() => p.onItem(i)}>
               <p>{i.body}</p>
               {i.media && <Media item={i} />}
             </button>
-            <WeiboActions p={p} item={i} />
+            <div className="social-actions weibo-actions">
+              <button onClick={() => p.onItem(i)}><Share2 size={17} /> 转发</button>
+              <button onClick={() => p.onItem(i)}><MessageCircle size={17} /> 评论</button>
+              <button onClick={() => p.onItem(i)}><ThumbsUp size={17} /> {i.likes || "赞"}</button>
+            </div>
           </article>
-        ))}
-        <Empty items={list} />
+        )) : (
+          <div className="weibo-empty-tab">{tab === "超话" ? "暂未加入超话" : "暂无相册内容"}</div>
+        )}
+        <Empty items={tab === "微博" || tab === "精选" ? posts : []} />
       </div>
     </div>
   );
