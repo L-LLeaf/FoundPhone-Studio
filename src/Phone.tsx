@@ -277,6 +277,15 @@ function PhoneRuntime({
     onOpen?.(id);
     event("openApp", id);
   };
+  const exitApp = () => {
+    captureApp();
+    setKeyboard(false);
+    setApp("");
+    setPanel("");
+    setFolder("");
+    setContextApp("");
+    setHomeRequest((n) => n + 1);
+  };
   const installedApps = work.apps.filter((a) => a.installed);
   const apps = installedApps.filter((a) => a.visible);
   const unlock = (pin = "") => {
@@ -466,7 +475,7 @@ function PhoneRuntime({
                   onRead={(id) => event("read", id)}
                   onEdit={(item) => onEdit?.(app, item)}
                   onAdd={() => onAdd?.(app)}
-                  onBack={() => setApp("")}
+                  onBack={exitApp}
                   onSettings={onSettings}
                   onUi={(key, value) => {
                     const current = runtimeRef.current;
