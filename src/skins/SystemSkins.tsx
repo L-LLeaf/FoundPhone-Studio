@@ -17,7 +17,6 @@ import {
   Image,
   LockKeyhole,
   MapPin,
-  Music,
   Phone,
   Search,
   SkipForward,
@@ -767,7 +766,7 @@ export function FilesSkin(p: Props) {
 }
 export function MusicSkin(p: Props) {
   const { items } = useContent(p, "资料库");
-  const [track, setSong] = useTrack(p, items);
+  const [track] = useTrack(p, items);
   const song = track ?? items[0] ?? null;
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
