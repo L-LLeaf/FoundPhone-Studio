@@ -79,6 +79,7 @@ export function WeiboSkin(p: Props) {
   const count = (key: string, fallback: string) =>
     profileItem ? meta(profileItem, key, fallback) : fallback;
   const posts = [...items].sort((a, b) => b.time.localeCompare(a.time));
+  const readCounts = [7, 13, 4, 18, 9, 2, 15, 6, 11];
   return (
     <div className="catalog-skin weibo-ui weibo-profile-page">
       <div className="weibo-cover">
@@ -96,7 +97,7 @@ export function WeiboSkin(p: Props) {
           <span className="weibo-account-tag">♀</span>
           <span className="weibo-online">在线 ›</span>
         </div>
-        <button className="weibo-follow">＋ 关注</button>
+
       </section>
       <div className="weibo-stats">
         <span><b>{count("followers", "0")}</b> 粉丝</span>
@@ -116,7 +117,7 @@ export function WeiboSkin(p: Props) {
             <div className="weibo-post-head">
               <Avatar name={profileName} src={profileItem?.avatar} />
               <div><strong>{profileName}</strong><small>{i.time.slice(5, 10)} 来自 Xiaomi 15 Pro</small></div>
-              <span className="weibo-read-count">{meta(i, "reads", "77")}<small>阅读</small></span>
+              <span className="weibo-read-count">{readCounts[posts.indexOf(i)] ?? 8}<small>阅读</small></span>
             </div>
             <button className="social-body" onClick={() => p.onItem(i)}>
               <p>{i.body}</p>
@@ -516,85 +517,51 @@ function RedditPost({ p, item: i }: { p: Props; item: Item }) {
   );
 }
 export function ForumSkin(p: Props) {
-  const { tab, setTab, q, setQ, items } = useContent(p, "帖子");
-  const [board, setBoard] = useState("");
-  const list = board
-    ? items.filter((i) => (i.folder || "未分类") === board)
-    : items;
+  const { tab, setTab, q, setQ, items } = useContent(p, "全部");
+  const [sort, setSort] = useState("最新");
   const groupItem = items.find((i) => meta(i, "groupIntro") || i.avatar);
-  const groupName = groupItem?.folder || board || "论坛";
-  const groupAvatar = groupItem?.avatar ?? "";
+  const groupName = groupItem?.folder || "淋雨大吉";
+  const topics = [...items].sort((a,b) => sort === "热门" ? b.likes-a.likes : b.time.localeCompare(a.time));
+  const replies = [84, 63, 41, 27, 12, 9];
   return (
-    <div className="catalog-skin forum-ui">
-      <Header p={p} />
-      <div className="forum-banner">
-        {groupAvatar ? (
-          <Avatar name={groupName} src={groupAvatar} />
-        ) : (
-          <Hash size={27} />
-        )}
-        <div className="forum-banner-text">
-          <strong>{board || groupName}</strong>
-          {groupItem && meta(groupItem, "groupIntro") && !board && (
-            <small>{meta(groupItem, "groupIntro")}</small>
-          )}
-          <span>{list.length} 个主题</span>
+    <div className="catalog-skin douban-group-screen">
+      <div className="douban-red-head">
+        <div className="douban-topline">
+          <button aria-label="返回" onClick={p.onBack}><ChevronLeft size={23}/></button>
+          <label><Search size={15}/><input value={q} onChange={e=>setQ(e.target.value)} placeholder="组内搜索｜帖子和讨论"/></label>
+          <button aria-label="更多">•••</button>
+        </div>
+        <div className="douban-group-summary">
+          <Avatar name={groupName} src={groupItem?.avatar}/>
+          <div><strong>{groupName}</strong><small>45316 人正在讨论 ›</small></div>
+          <span className="douban-joined">已加入</span>
+        </div>
+        <div className="douban-group-rules">
+          <p><b>小组简介：</b>{meta(groupItem,"groupIntro","我也是个念旧的人。")}</p>
+          <p><b>发言规则：</b>请友善讨论，理性表达 <ChevronRight size={15}/></p>
         </div>
       </div>
-      <div className="catalog-scroll">
-        <SearchBox value={q} set={setQ} />
-        {tab === "版块"
-          ? groupItems(items).map((g) => (
-              <button
-                className="forum-board"
-                key={g}
-                onClick={() => {
-                  setBoard(g);
-                  setTab("帖子");
-                }}
-              >
-                <FolderIcon />
-                <div>
-                  <strong>{g}</strong>
-                  <small>
-                    {items.filter((i) => (i.folder || "未分类") === g).length}{" "}
-                    个主题
-                  </small>
-                </div>
-                <ChevronRight size={16} />
-              </button>
-            ))
-          : list.map((i) => (
-              <button
-                className="forum-topic"
-                key={i.id}
-                onClick={() => p.onItem(i)}
-              >
-                <strong>
-                  {meta(i, "status") && <em>{meta(i, "status")}</em>}
-                  {i.title}
-                </strong>
-                <p>{i.body.split("\n")[0]}</p>
-                <div>
-                  <span>
-                    {i.sender} · {i.time.slice(5, 16)}
-                  </span>
-                  <span>
-                    {meta(i, "views", "—")} 浏览 · {i.comments.length} 回复
-                  </span>
-                </div>
-              </button>
-            ))}
+      <div className="douban-categories">
+        {["全部","水帖大楼房","梨子桃子铺","心动贩卖所"].map((t,i)=><button key={t} className={(tab===t || (tab==="全部"&&i===0))?"selected":""} onClick={()=>setTab(t)}>{t}</button>)}
       </div>
-      <Tabs
-        tabs={["帖子", "版块"]}
-        value={tab}
-        set={(t) => {
-          setTab(t);
-          setBoard("");
-        }}
-        icons={[<MessageCircle />, <Grid />]}
-      />
+      <div className="douban-discussion-head">
+        <strong>讨论列表</strong>
+        <div>{["最新","热门","精华"].map(t=><button key={t} className={sort===t?"selected":""} onClick={()=>setSort(t)}>{t}</button>)}</div>
+      </div>
+      <div className="catalog-scroll douban-topic-list">
+        {topics.map((i,n)=>(
+          <button className="douban-topic" key={i.id} onClick={()=>p.onItem(i)}>
+            <div className="douban-reply-count"><i>●</i><span>{replies[n%replies.length]}</span></div>
+            <div className="douban-topic-main">
+              <strong>{i.title}</strong>
+              <p>{i.body.split("\n")[0]}</p>
+              <div className="douban-topic-meta"><span className="douban-mini-avatar">{(i.sender||"楼").slice(0,1)}</span><span>{i.sender}</span><small>{n===0?"刚刚更新":n===1?"今天 18:42":`${n+1}小时前`}</small></div>
+            </div>
+            {i.media && <Media item={i} className="douban-topic-thumb"/>}
+          </button>
+        ))}
+        <Empty items={topics}/>
+      </div>
     </div>
   );
 }
