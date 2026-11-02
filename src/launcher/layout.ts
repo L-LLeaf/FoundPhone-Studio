@@ -61,7 +61,7 @@ export function defaultLayout(input: Work): DeviceLayout {
     apps: structuredClone(w.apps)
       .map((a) => {
         const native = new Set(["appstore","phone","messages","contacts","photos","camera","safari","notes","calendar","mail","clock","reminders","files","music","maps","weather","wallet","health","find","calculator","settings"]);
-        const storyApps = new Set(["douban","weibo","wechat"]);
+        const storyApps = new Set(["forum","weibo","wechat"]);
         return native.has(a.id) || storyApps.has(a.id)
           ? a
           : { ...a, visible: false, dock: false, folder: "" };
