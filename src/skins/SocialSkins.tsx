@@ -1,6 +1,7 @@
 import { useSkinState } from "../skinState";
 import {
   ArrowDown,
+  ArrowUp,
   ChevronLeft,
   AtSign,
   Bookmark,
