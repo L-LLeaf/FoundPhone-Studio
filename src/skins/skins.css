@@ -4196,3 +4196,39 @@
   0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
   30% { opacity: 1; transform: translateY(-2px); }
 }
+
+
+/* Profile-style Weibo page, modeled on the supplied reference screenshot. */
+.weibo-profile-page { background:#fff; color:#242424; }
+.weibo-cover { height:118px; flex:0 0 118px; padding:12px 15px; display:flex; justify-content:space-between; align-items:flex-start; color:#fff; background:linear-gradient(180deg,rgba(20,30,35,.20),rgba(20,30,35,.03)),linear-gradient(135deg,#a8c9c7 0%,#d9d8c7 48%,#d9b995 100%); }
+.weibo-cover > div { display:flex; gap:12px; }
+.weibo-cover button { width:31px;height:31px;border-radius:50%;display:grid;place-items:center;background:rgba(60,70,70,.25);color:#fff; }
+.weibo-account { position:relative; display:flex; align-items:center; gap:12px; min-height:72px; padding:0 14px 8px; margin-top:-1px; background:#fff; border-radius:12px 12px 0 0; }
+.weibo-account > .catalog-avatar { width:78px;height:78px;flex:0 0 78px;margin-top:-23px;border:3px solid #fff;font-size:27px; }
+.weibo-account-main { min-width:0;display:flex;align-items:center;gap:7px;flex-wrap:wrap; }
+.weibo-account-main h2 { font-size:19px;font-weight:600;margin:0; }
+.weibo-account-tag { color:#e66b9b;font-size:14px; }
+.weibo-online { display:block; flex-basis:100%;width:max-content;color:#77aa82;background:#eef7ef;border-radius:18px;padding:3px 11px;font-size:11px; }
+.weibo-follow { margin-left:auto;white-space:nowrap;border:1px solid #e8e8e8;border-radius:18px;padding:6px 10px;color:#df7b38;font-size:11px; }
+.weibo-stats { display:flex;gap:20px;padding:4px 14px 13px;background:#fff;font-size:12px;color:#888; }
+.weibo-stats b { color:#222;font-weight:600;font-size:15px;margin-right:3px; }
+.weibo-profile-tabs { height:45px;display:flex;align-items:stretch;justify-content:space-around;border-bottom:1px solid #eee;background:#fff;flex-shrink:0; }
+.weibo-profile-tabs button { position:relative;padding:0 10px;color:#888;font-size:13px; }
+.weibo-profile-tabs button.selected { color:#222;font-weight:650; }
+.weibo-profile-tabs button.selected:after { content:"";position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:25px;height:3px;border-radius:3px;background:#f18a3b; }
+.weibo-original-bar { height:38px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;background:#eee;color:#888;font-size:12px;flex-shrink:0; }
+.weibo-timeline { background:#eee; }
+.weibo-profile-page .weibo-post { margin:0 0 8px;padding:13px 13px 3px;background:#fff; }
+.weibo-post-head { display:flex;align-items:center;gap:10px;margin-bottom:9px; }
+.weibo-post-head .catalog-avatar { width:38px;height:38px;flex:0 0 38px; }
+.weibo-post-head > div { min-width:0;display:flex;flex-direction:column;gap:4px; }
+.weibo-post-head strong { font-size:13px;font-weight:500; }
+.weibo-post-head small { color:#89909a;font-size:10px; }
+.weibo-read-count { margin-left:auto;display:flex;flex-direction:column;align-items:center;border:1px solid #eee;border-radius:20px;padding:4px 13px;color:#888;font-size:12px; }
+.weibo-read-count small { font-size:9px; }
+.weibo-profile-page .weibo-post > .social-body { padding:0 0 11px;font-size:14px;line-height:1.7;text-align:left; }
+.weibo-profile-page .weibo-post .social-actions { border-top:1px solid #eee;padding:11px 3px 8px; }
+.weibo-profile-page .weibo-post .social-actions button { flex:1;justify-content:center;font-size:12px;color:#777; }
+.weibo-profile-page .weibo-post .social-actions button:last-child { margin-left:0; }
+.weibo-empty-tab { padding:35px 15px;text-align:center;color:#999;font-size:12px;background:#fff; }
+.weibo-more-menu { position:absolute;z-index:5;right:12px;top:48px;padding:10px 15px;background:#fff;border-radius:8px;box-shadow:0 3px 15px #0002;font-size:11px; }
