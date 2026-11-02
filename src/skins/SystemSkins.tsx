@@ -25,7 +25,7 @@ import {
   Users,
   Wallet,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { download } from "../io";
 import { safeMedia, type Item } from "../schema";
 import {
@@ -766,82 +766,70 @@ export function FilesSkin(p: Props) {
   );
 }
 export function MusicSkin(p: Props) {
-  const { tab, setTab, items } = useContent(p, "资料库");
+  const { items } = useContent(p, "资料库");
   const [track, setSong] = useTrack(p, items);
   const song = track ?? items[0] ?? null;
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [playing, setPlaying] = useState(false);
+  const [elapsed, setElapsed] = useState(0);
+  const duration = 5;
+  const toggle = async () => {
+    const audio = audioRef.current;
+    if (!audio || !song || !safeMedia(song.media)) return;
+    if (playing) { audio.pause(); setPlaying(false); return; }
+    if (audio.currentTime >= duration || audio.ended) audio.currentTime = 0;
+    try { await audio.play(); setPlaying(true); } catch { setPlaying(false); }
+  };
+  useEffect(() => {
+    setPlaying(false); setElapsed(0);
+    if (audioRef.current) { audioRef.current.pause(); audioRef.current.currentTime = 0; }
+  }, [song?.id]);
   return (
-    <div className="catalog-skin native-music">
-      <Header p={p} />
-      <div className="catalog-scroll">
-        <h1>{tab}</h1>
-        {tab === "歌单" ? (
-          <div className="music-albums">
-            {groupItems(items, "我的音乐").map((g) => (
-              <button
-                key={g}
-                onClick={() => {
-                  const i = items.find((i) => (i.folder || "我的音乐") === g);
-                  if (i) setSong(i);
-                }}
-              >
-                <Music size={51} />
-                <strong>{g}</strong>
-              </button>
-            ))}
-          </div>
-        ) : (
-          items.map((i, n) => (
-            <button
-              className="music-track"
-              key={i.id}
-              onClick={() => {
-                setSong(i);
-              }}
-            >
-              <small>{n + 1}</small>
-              <span>
-                <strong>{i.title}</strong>
-                <small>
-                  {i.sender} · {meta(i, "album")}
-                </small>
-              </span>
-              <span>{meta(i, "duration")}</span>
-            </button>
-          ))
-        )}
-        <Empty items={items} />
+    <div className="catalog-skin apple-music-screen">
+      <div className="apple-music-top">
+        <button aria-label="返回" onClick={p.onBack}><ChevronLeft size={25} /></button>
+        <span>正在播放</span>
+        <button aria-label="更多选项"><span className="music-more-dots">•••</span></button>
       </div>
-      {song && (
-        <div className="native-now-playing">
-          <button onClick={() => p.onItem(song)}>
-            <Music size={20} />
-            {song.title}
-          </button>
-          {song.kind === "audio" && safeMedia(song.media) ? (
-            <AudioPlayer p={p} item={song} />
+      {song ? (
+        <div className="apple-music-content">
+          <div className="apple-album-art">
+            <div className="album-art-glow" />
+            <div className="album-art-mark"><span>✦</span><i>✧</i></div>
+          </div>
+          <div className="apple-track-title">
+            <div><strong>{song.title}</strong><small>{song.sender || "苏新皓"}</small></div>
+            <button aria-label="添加到资料库"><Heart size={22} /></button>
+          </div>
+          <div className="apple-progress">
+            <div className="apple-progress-track"><i style={{width: `${Math.min(100, elapsed / duration * 100)}%`}} /></div>
+            <div><small>0:{String(Math.floor(elapsed)).padStart(2,"0")}</small><small>0:05 片段</small></div>
+          </div>
+          <div className="apple-controls">
+            <button aria-label="上一首" onClick={() => setElapsed(0)}><SkipForward className="music-prev" size={25} /></button>
+            <button className="apple-play" aria-label={playing ? "暂停" : "播放5秒"} onClick={toggle}>
+              {playing ? <span className="pause-glyph">Ⅱ</span> : <span className="play-glyph">▶</span>}
+            </button>
+            <button aria-label="下一首" onClick={() => setElapsed(0)}><SkipForward size={25} /></button>
+          </div>
+          {safeMedia(song.media) ? (
+            <audio ref={audioRef} src={safeMedia(song.media)} preload="metadata"
+              onTimeUpdate={(e) => {
+                const t=e.currentTarget.currentTime; setElapsed(Math.min(t,duration));
+                if (t >= duration) { e.currentTarget.pause(); e.currentTarget.currentTime=0; setPlaying(false); setElapsed(0); }
+              }}
+              onEnded={() => {setPlaying(false);setElapsed(0);}} />
           ) : (
-            <button onClick={() => p.onItem(song)}>查看歌曲内容</button>
+            <p className="apple-audio-hint">添加音频后，可试听前 5 秒</p>
           )}
-          <button
-            aria-label="下一首"
-            onClick={() =>
-              setSong(
-                items[
-                  (items.findIndex((i) => i.id === song.id) + 1) % items.length
-                ],
-              )
-            }
-          >
-            <SkipForward size={18} />
-          </button>
+          <div className="apple-track-details">
+            <span>《一天一天（Severus）》</span>
+            <span>TF家族 / TOP登陆少年 · 苏新皓</span>
+            <span>词曲：TF家族-苏新皓</span>
+          </div>
         </div>
-      )}
-      <Tabs
-        tabs={["资料库", "歌单"]}
-        value={tab}
-        set={setTab}
-        icons={[<Music />, <Folder />]}
-      />
+      ) : <Empty items={items} />}
+      <div className="apple-music-bottom"><button>歌词</button><button>播放列表</button><button>•••</button></div>
     </div>
   );
 }
