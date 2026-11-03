@@ -10,7 +10,7 @@
     "time": "15:20",
     "battery": 99,
     "network": "5G",
-    "wallpaper": "sage",
+    "wallpaper": "assets/wallpaper.jpg",
     "theme": "light",
     "notifications": true,
     "passcode": ""
@@ -331,7 +331,8 @@
         "folder": "资料库",
         "meta": {
           "artist": "苏新皓"
-        }
+        },
+        "media": "assets/audio/day-by-day.m4a"
       }
     ],
     "phone": [
@@ -557,6 +558,128 @@
         "time": "2025-12-24 11:05",
         "sender": "m0on_7xq__",
         "folder": "微博"
+      }
+    ],
+    "photos": [
+      {
+        "id": "photo-01",
+        "title": "照片",
+        "body": "",
+        "time": "2026-01-12 15:20",
+        "sender": "照片",
+        "kind": "image",
+        "media": "assets/gallery/01.jpg",
+        "folder": "最近项目"
+      },
+      {
+        "id": "photo-02",
+        "title": "照片",
+        "body": "",
+        "time": "2026-01-11 15:20",
+        "sender": "照片",
+        "kind": "image",
+        "media": "assets/gallery/02.jpg",
+        "folder": "最近项目"
+      },
+      {
+        "id": "photo-03",
+        "title": "照片",
+        "body": "",
+        "time": "2026-01-10 15:20",
+        "sender": "照片",
+        "kind": "image",
+        "media": "assets/gallery/03.jpg",
+        "folder": "最近项目"
+      },
+      {
+        "id": "photo-04",
+        "title": "照片",
+        "body": "",
+        "time": "2026-01-09 15:20",
+        "sender": "照片",
+        "kind": "image",
+        "media": "assets/gallery/04.jpg",
+        "folder": "最近项目"
+      },
+      {
+        "id": "photo-05",
+        "title": "照片",
+        "body": "",
+        "time": "2026-01-08 15:20",
+        "sender": "照片",
+        "kind": "image",
+        "media": "assets/gallery/05.jpg",
+        "folder": "最近项目"
+      },
+      {
+        "id": "photo-06",
+        "title": "照片",
+        "body": "",
+        "time": "2026-01-07 15:20",
+        "sender": "照片",
+        "kind": "image",
+        "media": "assets/gallery/06.jpg",
+        "folder": "最近项目"
+      },
+      {
+        "id": "photo-07",
+        "title": "照片",
+        "body": "",
+        "time": "2026-01-06 15:20",
+        "sender": "照片",
+        "kind": "image",
+        "media": "assets/gallery/07.jpg",
+        "folder": "最近项目"
+      },
+      {
+        "id": "photo-08",
+        "title": "照片",
+        "body": "",
+        "time": "2026-01-05 15:20",
+        "sender": "照片",
+        "kind": "image",
+        "media": "assets/gallery/08.jpg",
+        "folder": "最近项目"
+      },
+      {
+        "id": "photo-09",
+        "title": "照片",
+        "body": "",
+        "time": "2026-01-04 15:20",
+        "sender": "照片",
+        "kind": "image",
+        "media": "assets/gallery/09.jpg",
+        "folder": "最近项目"
+      },
+      {
+        "id": "photo-10",
+        "title": "照片",
+        "body": "",
+        "time": "2026-01-03 15:20",
+        "sender": "照片",
+        "kind": "image",
+        "media": "assets/gallery/10.jpg",
+        "folder": "最近项目"
+      },
+      {
+        "id": "photo-11",
+        "title": "照片",
+        "body": "",
+        "time": "2026-01-02 15:20",
+        "sender": "照片",
+        "kind": "image",
+        "media": "assets/gallery/11.jpg",
+        "folder": "最近项目"
+      },
+      {
+        "id": "photo-video",
+        "title": "视频",
+        "body": "",
+        "time": "2026-01-12 15:18",
+        "sender": "照片",
+        "kind": "video",
+        "media": "assets/video/photos-clip.mov",
+        "folder": "最近项目"
       }
     ]
   },
