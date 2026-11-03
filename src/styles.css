@@ -4948,10 +4948,11 @@ label {
 .wx-moment-date { width:64px; flex:none; display:flex; align-items:baseline; gap:3px; padding-top:3px; }
 .wx-moment-date strong { font-size:23px; font-weight:600; }
 .wx-moment-date small { font-size:11px; }
-.wx-moment-content { min-width:0; flex:1; display:grid; grid-template-columns: minmax(0,1fr) 88px; align-items:start; gap:10px; }
-.wx-moment-content p { grid-column:1/-1; font-size:15px; line-height:1.5; margin:0 0 4px; }
-.wx-moment-content img { width:88px; height:88px; object-fit:cover; }
-.wx-moment-content small { color:#aaa; font-size:10px; align-self:center; }
+.wx-moment-content { min-width:0; flex:1; display:flex; flex-direction:column; align-items:flex-start; gap:8px; }
+.wx-moment-content p { width:100%; font-size:15px; line-height:1.5; margin:0 0 2px; text-align:left; }
+.wx-moment-content img { width:88px; height:88px; object-fit:cover; margin-top:0; }
+.wx-moment-content small { color:#aaa; font-size:10px; align-self:flex-start; }
+.wx-moment-profile > div { flex:1; text-align:right; padding-top:12px; }
 .wx-moments .phone-add { margin:12px; }
 /* Douban group page: compact red header and plain discussion rows. */
 .douban-group-screen { background:#fff; color:#171717; }
