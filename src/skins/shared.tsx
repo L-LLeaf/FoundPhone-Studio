@@ -93,10 +93,12 @@ export function Avatar({
   round?: boolean;
   src?: string;
 }) {
+  const [imageFailed, setImageFailed] = useState(false);
+  const imageSrc = safeMedia(src);
   return (
     <span className={`catalog-avatar ${round ? "round" : ""}`}>
-      {safeMedia(src) ? (
-        <img src={safeMedia(src)} alt="" />
+      {imageSrc && !imageFailed ? (
+        <img src={imageSrc} alt="" onError={() => setImageFailed(true)} />
       ) : (
         name.slice(0, 1) || "人"
       )}
