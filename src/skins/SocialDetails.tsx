@@ -194,7 +194,7 @@ export function SocialDetail(p: {
           </div>
         ) : douban ? (
           <div className="douban-reply-tabs">
-            {["回复 113", "赞", "转发", "收藏", "礼物"].map((label) => (
+            {[`回复 ${comments.length}`, "赞", "转发", "收藏", "礼物"].map((label) => (
               <button key={label} aria-pressed={label.startsWith("回复") ? tab === "评论" : tab === label} onClick={() => setTab(label.startsWith("回复") ? "评论" : label)}>{label}</button>
             ))}
           </div>
@@ -209,7 +209,7 @@ export function SocialDetail(p: {
             {sort ? "按时间" : "按热度"}⌄
           </button>
         )}
-        {(tab === "评论" || (douban && tab === "回复 113")) ? (
+        {(tab === "评论" || (douban && tab === `回复 ${comments.length}`)) ? (
           <>
           {douban && <div className="douban-all-replies"><span>全部回复</span><button>楼主⌄</button></div>}
           <div className="post-detail-comments">
