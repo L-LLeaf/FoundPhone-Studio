@@ -379,9 +379,10 @@ export function WeChatSkin(p: SkinProps) {
             
           </div>
           <div className="wx-moment-profile">
-            <div><strong>{selfProfile?.title || "我"}</strong><p>{selfProfile?.meta?.signature || " "}</p></div>
+            <div><strong>{selfProfile?.title || "我"}</strong></div>
             <Avatar name={selfProfile?.title || "我"} src={selfProfile?.avatar} />
           </div>
+          <p className="wx-moment-signature">{selfProfile?.meta?.signature || ""}</p>
           {posts.map((i) => (
             <button
               key={i.id}
