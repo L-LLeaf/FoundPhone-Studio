@@ -523,7 +523,7 @@ function RedditPost({ p, item: i }: { p: Props; item: Item }) {
   );
 }
 export function ForumSkin(p: Props) {
-  const { q, setQ, items } = useContent(p, "全部");
+  const { items } = useContent(p, "全部");
   const [sort, setSort] = useState("最新");
   const groupItem = items.find((i) => meta(i, "groupIntro") || i.avatar);
   const groupName = groupItem?.folder || "淋雨大吉";
