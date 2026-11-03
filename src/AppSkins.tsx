@@ -89,12 +89,16 @@ function MessageList({
   onItem,
   onRead,
   whatsapp = false,
+  selfName,
+  selfAvatar,
 }: {
   items: Item[];
   creator: boolean;
   onItem: (i: Item) => void;
   onRead: (id: string) => void;
   whatsapp?: boolean;
+  selfName?: string;
+  selfAvatar?: string;
 }) {
   return (
     <div className={`skin-messages ${whatsapp ? "wa-wallpaper" : ""}`}>
@@ -126,7 +130,10 @@ function MessageList({
               {whatsapp && i.outgoing && <CheckCheck size={11} />}
             </small>
           </button>
-          {!whatsapp && i.outgoing && <Avatar name={i.sender} src={i.avatar} />}
+          {i.meta?.blockedSend === "true" && !whatsapp && (
+            <span className="wx-send-failed" aria-label="消息发送失败，对方已将你拉黑">!</span>
+          )}
+          {!whatsapp && i.outgoing && <Avatar name={selfName || i.sender} src={selfAvatar || i.avatar} />}
         </div>
       ))}
     </div>
@@ -165,6 +172,9 @@ export function WeChatSkin(p: SkinProps) {
   );
   const [typedIds, setTypedIds] = useSkinState<string[]>(p, "typedIds", []);
   const [typingFor, setTypingFor] = useState("");
+  const [typingText, setTypingText] = useState("");
+  const [sending, setSending] = useState(false);
+  const selfProfile = p.items.find((i) => i.folder === "我");
   const threadItems = p.thread
     ? p.items.filter((i) => i.title === p.thread)
     : [];
@@ -177,17 +187,36 @@ export function WeChatSkin(p: SkinProps) {
   useEffect(() => {
     if (!p.thread || !pendingAuto.length || typingFor) return;
     const delay = Number(pendingAuto[0].meta?.autoType) || 3000;
-    const timer = setTimeout(() => setTypingFor(pendingAuto[0].id), delay);
+    const timer = setTimeout(() => {
+      setTypingText("");
+      setSending(false);
+      setTypingFor(pendingAuto[0].id);
+    }, delay);
     return () => clearTimeout(timer);
   }, [p.thread, pendingAuto.length, typingFor]);
+  const typingItem = threadItems.find((i) => i.id === typingFor);
   useEffect(() => {
-    if (!typingFor) return;
+    if (!typingFor || !typingItem) return;
+    if (typingText.length >= typingItem.body.length) {
+      const timer = setTimeout(() => setSending(true), 450);
+      return () => clearTimeout(timer);
+    }
+    const timer = setTimeout(
+      () => setTypingText(typingItem.body.slice(0, typingText.length + 1)),
+      82,
+    );
+    return () => clearTimeout(timer);
+  }, [typingFor, typingText, typingItem?.body]);
+  useEffect(() => {
+    if (!sending || !typingFor) return;
     const timer = setTimeout(() => {
       setTypedIds((v) => (v.includes(typingFor) ? v : [...v, typingFor]));
       setTypingFor("");
-    }, 1800);
+      setTypingText("");
+      setSending(false);
+    }, 320);
     return () => clearTimeout(timer);
-  }, [typingFor]);
+  }, [sending, typingFor]);
   const conversations = [
     ...new Set(
       p.items
@@ -196,7 +225,12 @@ export function WeChatSkin(p: SkinProps) {
     ),
   ];
   const contacts = [
-    ...new Set(p.items.map((i) => i.sender).filter((s) => s !== "我")),
+    ...new Set(
+      p.items
+        .filter((i) => !["朋友圈", "我"].includes(i.folder))
+        .map((i) => i.title)
+        .filter(Boolean),
+    ),
   ];
   const posts = p.items.filter(
     (i) => i.folder === "朋友圈" || i.kind === "post",
@@ -307,15 +341,19 @@ export function WeChatSkin(p: SkinProps) {
             creator={p.creator}
             onItem={p.onItem}
             onRead={p.onRead}
+            selfName={selfProfile?.title || "我"}
+            selfAvatar={selfProfile?.avatar}
           />
           {typingFor && (
-            <div className="wx-autotype" aria-live="polite">
-              <span className="wx-autotype-dots">
-                <i />
-                <i />
-                <i />
-              </span>
-              正在输入…
+            <div className={`wx-autotype ${sending ? "is-sending" : ""}`} aria-live="polite">
+              <span className="wx-autotype-input">{typingText}<i /></span>
+              <button
+                className="wx-autotype-send"
+                disabled={typingText.length < (typingItem?.body.length || 0)}
+                onClick={() => setSending(true)}
+              >
+                发送
+              </button>
             </div>
           )}
           <Compose creator={p.creator} onAdd={p.onAdd} />
@@ -458,10 +496,10 @@ export function WeChatSkin(p: SkinProps) {
           ) : (
             <>
               <div className="wx-profile">
-                <Avatar name={p.owner || "机主"} />
+                <Avatar name={selfProfile?.title || "我"} src={selfProfile?.avatar} />
                 <div>
-                  <h2>{p.owner || "机主"}</h2>
-                  <small>微信号：未设置</small>
+                  <h2>{selfProfile?.title || "我"}</h2>
+                  <small>微信号：{selfProfile?.meta?.wechatId || "未设置"}</small>
                   <button
                     className="wx-profile-status"
                     onClick={() => setUtility("状态")}
