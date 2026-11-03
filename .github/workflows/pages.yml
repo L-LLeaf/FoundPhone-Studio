@@ -45,11 +45,23 @@ jobs:
             cp "public/assets/朋友圈配图拍你一辈子.jpg" public/assets/moments/moments-post-camera.jpg
           fi
 
+          # Map the supplied avatar references to the story paths.
+          mkdir -p public/assets/avatars public/assets/douban
+          if [ -f public/assets/avatars/111.png ]; then
+            cp public/assets/avatars/111.png public/assets/avatars/weibo-avatar.jpg
+          fi
+          if [ -f public/assets/avatars/222.jpg ]; then
+            cp public/assets/avatars/222.jpg public/assets/avatars/wechat-avatar.jpg
+          fi
+          if [ -f public/assets/douban/2.jpg ]; then
+            cp public/assets/douban/2.jpg public/assets/douban/group-reference.jpg
+          fi
+
           # Normalize user-supplied filenames to the paths referenced by the story.
           if [ -d public/assets/audio ]; then
             audio_file="$(find public/assets/audio -maxdepth 1 -type f \( -iname '*.m4a' -o -iname '*.mp3' -o -iname '*.wav' \) | head -n 1)"
             if [ -n "$audio_file" ]; then
-              cp "$audio_file" public/assets/audio/day-by-day.m4a
+              if [ "$audio_file" != "public/assets/audio/day-by-day.m4a" ]; then cp "$audio_file" public/assets/audio/day-by-day.m4a; fi
             fi
           fi
 
@@ -66,7 +78,7 @@ jobs:
           if [ -d public/assets/video ]; then
             video_file="$(find public/assets/video -maxdepth 1 -type f \( -iname '*.mov' -o -iname '*.mp4' -o -iname '*.webm' \) | head -n 1)"
             if [ -n "$video_file" ]; then
-              cp "$video_file" public/assets/video/photos-clip.mov
+              if [ "$video_file" != "public/assets/video/photos-clip.mov" ]; then cp "$video_file" public/assets/video/photos-clip.mov; fi
             fi
           fi
       - uses: actions/setup-node@v4
