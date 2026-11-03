@@ -344,7 +344,7 @@ export function WeChatSkin(p: SkinProps) {
             selfName={selfProfile?.title || "我"}
             selfAvatar={selfProfile?.avatar}
           />
-          {typingFor && (
+          {typingFor ? (
             <div className={`wx-autotype ${sending ? "is-sending" : ""}`} aria-live="polite">
               <span className="wx-autotype-input">{typingText}<i /></span>
               <button
@@ -355,8 +355,9 @@ export function WeChatSkin(p: SkinProps) {
                 发送
               </button>
             </div>
+          ) : (
+            <Compose creator={p.creator} onAdd={p.onAdd} />
           )}
-          <Compose creator={p.creator} onAdd={p.onAdd} />
         </>
       ) : moments ? (
         <div className="wx-moments">
