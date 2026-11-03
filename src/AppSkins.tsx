@@ -371,11 +371,11 @@ export function WeChatSkin(p: SkinProps) {
               className="wx-moment-post"
               onClick={() => p.onItem(i)}
             >
-              <div className="wx-moment-date"><strong>{i.id === "moments-jan23" ? "23" : "今天"}</strong>{i.id === "moments-jan23" && <small>1月</small>}</div>
+              <div className="wx-moment-date"><strong>{i.id === "moments-jan08" ? "08" : "今天"}</strong>{i.id === "moments-jan08" && <small>1月</small>}</div>
               <div className="wx-moment-content">
                 {i.body && <p>{i.body}</p>}
                 {i.media && <ItemMedia item={i} />}
-                <small>{i.id === "moments-jan23" ? " " : i.time.slice(11,16)}</small>
+                <small>{i.id === "moments-jan08" ? " " : i.time.slice(11,16)}</small>
               </div>
             </button>
           ))}
