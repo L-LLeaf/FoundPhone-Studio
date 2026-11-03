@@ -8,6 +8,7 @@ import {
   Clock,
   CloudSun,
   Battery,
+  Heart,
   Download,
   Upload,
 } from "lucide-react";
@@ -44,6 +45,7 @@ const widgetLabels = {
   clock: "时钟",
   weather: "天气",
   notes: "备忘录",
+  countdown: "倒数日",
   battery: "电池",
 };
 const widgetApp = {
@@ -51,6 +53,7 @@ const widgetApp = {
   clock: "clock",
   weather: "weather",
   notes: "notes",
+  countdown: "notes",
   battery: "settings",
 };
 function WidgetFace({
@@ -96,18 +99,21 @@ function WidgetFace({
           {(work.data.notes || [])
             .filter((i) => !i.hidden && !i.password)
             .slice(0, 3)
-            .map((i, index) => (
-              <small
-                key={i.id}
-                className={index === 0 ? "widget-note-feature" : ""}
-              >
-                {i.title}
-              </small>
-            ))}
-          {!(work.data.notes || []).some((i) => !i.hidden && !i.password) && (
-            <small>无备忘录</small>
-          )}
+            .map((i) => <small key={i.id}>{i.title}</small>)}
         </>
+      ) : widget.type === "countdown" ? (
+        <div className="countdown-card-content">
+          <div className="countdown-card-kicker">
+            <span>OUR LITTLE STORY</span>
+            <Heart size={15} fill="currentColor" />
+          </div>
+          <div className="countdown-card-number">1314</div>
+          <div className="countdown-card-footer">
+            <strong>爱上苏新皓</strong>
+            <span>已经 1314 天</span>
+          </div>
+          <div className="countdown-card-sparkle">♡</div>
+        </div>
       ) : (
         <>
           <Battery size={44} />
