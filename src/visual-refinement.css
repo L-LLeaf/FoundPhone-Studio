@@ -282,3 +282,8 @@
 .ios18 .douban-topic {
   padding: 13px 13px 12px;
 }
+
+
+.ios18 .weibo-actions button.liked {
+  color: #e05b70;
+}
