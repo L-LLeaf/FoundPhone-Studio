@@ -215,3 +215,22 @@
   background: none;
   color: #007aff;
 }
+
+
+/* Minimal Notes paper: pure white canvas and black typography. */
+.ios18 .native-detail-notes,
+.ios18 .native-detail-notes .app-nav,
+.ios18 .native-detail-notes .native-note-paper,
+.ios18 .native-detail-notes .native-detail-toolbar {
+  background: #fff;
+  color: #111;
+}
+.ios18 .native-detail-notes .native-note-paper > time,
+.ios18 .native-detail-notes .native-note-paper h1,
+.ios18 .native-detail-notes .native-note-paper p,
+.ios18 .native-detail-notes .native-note-paper li,
+.ios18 .native-detail-notes .app-nav button,
+.ios18 .native-detail-notes .native-detail-toolbar button,
+.ios18 .native-detail-notes .native-detail-toolbar > span {
+  color: #111;
+}
