@@ -190,7 +190,7 @@
     },
     {
       "id": "hubby",
-      "name": "老公",
+      "name": "苏新皓",
       "phone": "",
       "avatar": "",
       "bio": ""
@@ -407,14 +407,14 @@
     {
       "id": "sms-hubby",
       "app": "messages",
-      "title": "老公",
+      "title": "苏新皓",
       "participants": [
         "hubby"
       ],
       "messages": [
         {
           "id": "smsh1",
-          "title": "老公",
+          "title": "苏新皓",
           "body": "别拉黑我，不然我把你队友床照爆出去",
           "time": "2026-01-12 14:02",
           "sender": "我",
@@ -423,15 +423,15 @@
         },
         {
           "id": "smsh2",
-          "title": "老公",
+          "title": "苏新皓",
           "body": "有病去治",
           "time": "2026-01-12 14:03",
-          "sender": "老公",
+          "sender": "苏新皓",
           "senderId": "hubby"
         },
         {
           "id": "smsh3",
-          "title": "老公",
+          "title": "苏新皓",
           "body": "[打码图片]",
           "time": "2026-01-12 14:04",
           "sender": "我",
@@ -440,15 +440,15 @@
         },
         {
           "id": "smsh4",
-          "title": "老公",
+          "title": "苏新皓",
           "body": "？",
           "time": "2026-01-12 14:05",
-          "sender": "老公",
+          "sender": "苏新皓",
           "senderId": "hubby"
         },
         {
           "id": "smsh5",
-          "title": "老公",
+          "title": "苏新皓",
           "body": "把我从黑名单拉出来",
           "time": "2026-01-12 14:06",
           "sender": "我",
@@ -457,10 +457,10 @@
         },
         {
           "id": "smsh6",
-          "title": "老公",
+          "title": "苏新皓",
           "body": "滚！",
           "time": "2026-01-12 14:07",
-          "sender": "老公",
+          "sender": "苏新皓",
           "senderId": "hubby"
         }
       ]
@@ -652,19 +652,19 @@
     "forum": [
       {
         "id": "douban0",
-        "title": "sxh🫧🧊今天又是什么人间观察",
+        "title": "那个叫sxh的🐶的人是不是🧠有问题啊？",
         "body": "",
         "time": "2026-01-12 15:00",
         "sender": "匿名",
         "folder": "淋雨大吉",
         "meta": {
-          "groupIntro": "一个专门收集碎碎念和现场瓜的小组。"
+          "groupIntro": "我也是个念旧的人。"
         },
         "avatar": "assets/douban/group-reference.jpg"
       },
       {
         "id": "douban1",
-        "title": "🍉：听说又有人开始装死了？",
+        "title": "🍉：听说ss打起来了？",
         "body": "",
         "time": "2026-01-12 13:10",
         "sender": "楼主",
@@ -673,7 +673,7 @@
       },
       {
         "id": "douban2",
-        "title": "老公今天也不营业",
+        "title": "老公好好……大",
         "body": "",
         "time": "2026-01-11 22:00",
         "sender": "匿名",
