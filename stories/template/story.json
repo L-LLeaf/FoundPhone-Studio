@@ -701,7 +701,7 @@
           "weiboCount": "112",
           "ip": "北京"
         },
-        "avatar": "assets/avatars/weibo-avatar.jpg"
+        "avatar": "assets/111.png"
       },
       {
         "id": "wb1",
@@ -710,7 +710,7 @@
         "time": "2026-01-10 23:14",
         "sender": "m0on_7xq__",
         "folder": "微博",
-        "avatar": "assets/avatars/weibo-avatar.jpg"
+        "avatar": "assets/111.png"
       },
       {
         "id": "wb2",
@@ -719,7 +719,7 @@
         "time": "2026-01-08 01:26",
         "sender": "m0on_7xq__",
         "folder": "微博",
-        "avatar": "assets/avatars/weibo-avatar.jpg"
+        "avatar": "assets/111.png"
       },
       {
         "id": "wb3",
@@ -728,7 +728,7 @@
         "time": "2026-01-05 20:38",
         "sender": "m0on_7xq__",
         "folder": "微博",
-        "avatar": "assets/avatars/weibo-avatar.jpg"
+        "avatar": "assets/111.png"
       },
       {
         "id": "wb4",
@@ -737,7 +737,7 @@
         "time": "2026-01-02 22:07",
         "sender": "m0on_7xq__",
         "folder": "微博",
-        "avatar": "assets/avatars/weibo-avatar.jpg"
+        "avatar": "assets/111.png"
       },
       {
         "id": "wb5",
@@ -746,7 +746,7 @@
         "time": "2025-12-29 18:19",
         "sender": "m0on_7xq__",
         "folder": "微博",
-        "avatar": "assets/avatars/weibo-avatar.jpg"
+        "avatar": "assets/111.png"
       },
       {
         "id": "wb6",
@@ -755,7 +755,7 @@
         "time": "2025-12-24 11:05",
         "sender": "m0on_7xq__",
         "folder": "微博",
-        "avatar": "assets/avatars/weibo-avatar.jpg"
+        "avatar": "assets/111.png"
       }
     ],
     "photos": [
@@ -910,7 +910,7 @@
           "wechatId": "SXHCWEI",
           "signature": "You either win with us or you watch us win."
         },
-        "avatar": "assets/avatars/wechat-avatar.jpg"
+        "avatar": "assets/222.jpg"
       },
       {
         "id": "moments-today",
@@ -921,7 +921,7 @@
         "folder": "朋友圈",
         "kind": "image",
         "media": "assets/moments/moments-post-camera.jpg",
-        "avatar": "assets/avatars/wechat-avatar.jpg"
+        "avatar": "assets/222.jpg"
       },
       {
         "id": "moments-jan08",
@@ -932,7 +932,7 @@
         "folder": "朋友圈",
         "kind": "image",
         "media": "assets/moments/moments-post-cat.jpg",
-        "avatar": "assets/avatars/wechat-avatar.jpg"
+        "avatar": "assets/222.jpg"
       }
     ]
   },
