@@ -530,31 +530,96 @@
 }
 
 
-/* Story-specific Notes widget: clean white paper with black type. */
-.ios18 .widget-notes {
-  background: #fff;
-  color: #111;
+/* Romantic Days Together widget — soft editorial countdown card. */
+.ios18 .widget-countdown {
+  position: relative;
+  background:
+    radial-gradient(circle at 93% 4%, #ffffffb8 0 13%, transparent 36%),
+    linear-gradient(135deg, #fff4f2 0%, #f8e7e8 48%, #f0dce4 100%);
+  color: #653e4c;
+  border: 1px solid #ffffffb8;
+  box-shadow: 0 5px 18px #6f35401a, inset 0 1px 0 #ffffffd9;
+  padding: 13px 17px;
 }
-.ios18 .widget-notes strong,
-.ios18 .widget-notes small {
-  color: #111;
+.ios18 .widget-countdown::before,
+.ios18 .widget-countdown::after {
+  content: "";
+  position: absolute;
+  border: 1px solid #ffffff80;
+  border-radius: 50%;
+  pointer-events: none;
 }
-
-
-/* Center and feature the first line in the home-screen Notes widget. */
-.ios18 .widget-notes {
-  align-items: center;
-  text-align: center;
+.ios18 .widget-countdown::before {
+  width: 116px;
+  height: 116px;
+  right: -39px;
+  top: -49px;
 }
-.ios18 .widget-notes .widget-note-feature {
+.ios18 .widget-countdown::after {
+  width: 82px;
+  height: 82px;
+  right: -21px;
+  top: -31px;
+}
+.ios18 .countdown-card-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1;
+  min-height: 0;
   width: 100%;
-  max-width: 100%;
-  font-size: 19px;
-  font-weight: 650;
-  line-height: 1.35;
-  color: #111;
-  text-align: center;
-  white-space: normal;
-  overflow: visible;
-  text-overflow: clip;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.ios18 .countdown-card-kicker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #a76d7d;
+}
+.ios18 .countdown-card-kicker span {
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 2.1px;
+}
+.ios18 .countdown-card-kicker svg {
+  color: #bd8292;
+  margin-right: 1px;
+}
+.ios18 .countdown-card-number {
+  margin-top: -2px;
+  color: #75495a;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 59px;
+  font-weight: 500;
+  letter-spacing: -3px;
+  line-height: .92;
+  font-variant-numeric: lining-nums;
+  text-shadow: 0 2px 0 #ffffff80;
+}
+.ios18 .countdown-card-footer {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding-top: 7px;
+  border-top: 1px solid #b9839140;
+  color: #76505d;
+}
+.ios18 .countdown-card-footer strong {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+.ios18 .countdown-card-footer span {
+  font-size: 11px;
+  color: #a27480;
+}
+.ios18 .countdown-card-sparkle {
+  position: absolute;
+  right: 3px;
+  bottom: 27px;
+  color: #bd8292;
+  font-family: Georgia, serif;
+  font-size: 24px;
+  opacity: .7;
 }
