@@ -15,6 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Install uploaded phone media
+        run: |
+          if [ -f FoundPhone-assets-upload.zip ]; then
+            mkdir -p public
+            unzip -oq FoundPhone-assets-upload.zip -d public/
+          fi
       - uses: actions/setup-node@v4
         with:
           node-version: 22
