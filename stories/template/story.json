@@ -3,7 +3,7 @@
   "id": "foundphone-studio",
   "title": "FoundPhone · 苏新皓的手机",
   "description": "一台留下了真实使用痕迹的手机。",
-  "revision": 3,
+  "revision": 4,
   "phone": {
     "owner": "苏新皓",
     "date": "2026-01-12",
@@ -12,7 +12,8 @@
     "network": "5G",
     "wallpaper": "sage",
     "theme": "light",
-    "notifications": true
+    "notifications": true,
+    "passcode": ""
   },
   "installedApps": [
     "phone",
