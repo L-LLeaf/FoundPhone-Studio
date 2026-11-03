@@ -24,14 +24,14 @@ jobs:
 
           # Normalize user-supplied filenames to the paths referenced by the story.
           if [ -d public/assets/audio ]; then
-            audio_file="$(find public/assets/audio -maxdepth 1 -type f \\( -iname '*.m4a' -o -iname '*.mp3' -o -iname '*.wav' \\) | head -n 1)"
+            audio_file="$(find public/assets/audio -maxdepth 1 -type f \( -iname '*.m4a' -o -iname '*.mp3' -o -iname '*.wav' \) | head -n 1)"
             if [ -n "$audio_file" ]; then
               cp "$audio_file" public/assets/audio/day-by-day.m4a
             fi
           fi
 
           if [ -d public/assets/gallery ]; then
-            mapfile -d '' gallery_files < <(find public/assets/gallery -maxdepth 1 -type f \\( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \\) -print0 | sort -z)
+            mapfile -d '' gallery_files < <(find public/assets/gallery -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) -print0 | sort -z)
             index=1
             for file in "${gallery_files[@]}"; do
               target="$(printf 'public/assets/gallery/%02d.jpg' "$index")"
@@ -41,7 +41,7 @@ jobs:
           fi
 
           if [ -d public/assets/video ]; then
-            video_file="$(find public/assets/video -maxdepth 1 -type f \\( -iname '*.mov' -o -iname '*.mp4' -o -iname '*.webm' \\) | head -n 1)"
+            video_file="$(find public/assets/video -maxdepth 1 -type f \( -iname '*.mov' -o -iname '*.mp4' -o -iname '*.webm' \) | head -n 1)"
             if [ -n "$video_file" ]; then
               cp "$video_file" public/assets/video/photos-clip.mov
             fi
