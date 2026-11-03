@@ -4931,3 +4931,77 @@ label {
   font-size: 12px;
   line-height: 1.5;
 }
+
+
+/* WeChat Moments profile and timeline tuned to the supplied reference. */
+.wx-moments { flex:1; min-height:0; overflow:auto; background:#fff; color:#171717; }
+.wx-moment-cover { height:255px; background-size:cover; background-position:center 38%; position:relative; display:flex; align-items:flex-end; justify-content:flex-end; padding:0 16px 16px; color:#fff; }
+.wx-moment-cover:after { content:""; position:absolute; inset:45% 0 0; background:linear-gradient(transparent,#0005); }
+.wx-moment-cover > span { position:relative; z-index:1; font-size:16px; text-shadow:0 1px 4px #0008; }
+.wx-moment-profile { display:flex; align-items:flex-start; justify-content:flex-end; gap:12px; min-height:98px; padding:0 16px 14px; }
+.wx-moment-profile > div { flex:1; text-align:right; padding-top:12px; }
+.wx-moment-profile strong { font-size:17px; font-weight:600; }
+.wx-moment-profile p { margin-top:12px; color:#858585; font-size:13px; line-height:1.6; }
+.wx-moment-profile .skin-avatar { width:70px; height:70px; margin-top:-28px; position:relative; z-index:2; border:4px solid #fff; border-radius:3px; }
+.wx-moment-post { display:flex; align-items:flex-start; gap:13px; width:100%; padding:18px 14px; text-align:left; color:#171717; background:#fff; border:0; }
+.wx-moment-date { width:64px; flex:none; display:flex; align-items:baseline; gap:3px; padding-top:3px; }
+.wx-moment-date strong { font-size:23px; font-weight:600; }
+.wx-moment-date small { font-size:11px; }
+.wx-moment-content { min-width:0; flex:1; display:grid; grid-template-columns: minmax(0,1fr) 88px; align-items:start; gap:10px; }
+.wx-moment-content p { grid-column:1/-1; font-size:15px; line-height:1.5; margin:0 0 4px; }
+.wx-moment-content img { width:88px; height:88px; object-fit:cover; }
+.wx-moment-content small { color:#aaa; font-size:10px; align-self:center; }
+.wx-moments .phone-add { margin:12px; }
+/* Douban group page: compact red header and plain discussion rows. */
+.douban-group-screen { background:#fff; color:#171717; }
+.douban-red-head { background:#e94350; color:#fff; padding:0 15px 17px; }
+.douban-topline { height:45px; display:flex; align-items:center; gap:10px; }
+.douban-topline > button { color:#fff; padding:3px; }
+.douban-topline label { flex:1; display:flex; align-items:center; gap:6px; background:#ffffff25; border-radius:18px; padding:5px 10px; min-width:0; }
+.douban-topline input { background:none; border:0; box-shadow:none; color:#fff; min-width:0; width:100%; font-size:11px; }
+.douban-topline input::placeholder { color:#ffffffbd; }
+.douban-more { font-size:17px; letter-spacing:1px; }
+.douban-group-summary { display:flex; align-items:center; gap:12px; padding:10px 0 15px; }
+.douban-group-summary .skin-avatar { width:61px; height:61px; border-radius:9px; }
+.douban-group-summary > div { flex:1; min-width:0; }
+.douban-group-summary strong { display:block; font-size:17px; }
+.douban-group-summary small { display:block; margin-top:7px; color:#ffffffbd; font-size:12px; }
+.douban-joined { background:#ffffff25; border-radius:17px; padding:8px 12px; font-size:11px; }
+.douban-group-rules { color:#ffffffd9; font-size:12px; line-height:1.7; }
+.douban-group-rules p { margin:3px 0; }
+.douban-group-rules b { color:#fff; font-weight:600; }
+.douban-group-rules p:nth-child(2) { display:none; }
+.douban-discussion-head { min-height:48px; padding:10px 14px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid #eee; }
+.douban-discussion-head strong { font-size:14px; font-weight:500; }
+.douban-discussion-head > div { display:flex; gap:4px; background:#f4f4f4; border-radius:8px; padding:2px; }
+.douban-discussion-head button { padding:6px 10px; color:#888; font-size:11px; border-radius:7px; }
+.douban-discussion-head button.selected { background:#fff; color:#222; box-shadow:0 1px 3px #0001; }
+.douban-topic { display:flex; align-items:flex-start; gap:12px; width:100%; padding:17px 14px; text-align:left; border:0; border-bottom:1px solid #eee; background:#fff; color:#171717; }
+.douban-reply-count { width:25px; flex:none; display:flex; flex-direction:column; align-items:center; gap:4px; padding-top:4px; color:#aaa; font-size:11px; }
+.douban-reply-count i { color:#f3ad66; font-size:14px; font-style:normal; }
+.douban-topic-main { flex:1; min-width:0; }
+.douban-topic-main strong { display:block; font-size:14px; line-height:1.55; font-weight:500; }
+.douban-topic-main > p { display:none; }
+.douban-topic-meta { display:flex; align-items:center; gap:7px; margin-top:9px; color:#999; font-size:10px; }
+.douban-mini-avatar { width:22px; height:22px; border-radius:50%; display:grid; place-items:center; background:#eee; color:#777; }
+.douban-topic-meta small { margin-left:4px; color:#aaa; }
+.douban-topic-thumb { display:none; }
+.douban-post-detail { background:#fff; color:#171717; }
+.douban-post-detail .post-detail-nav > strong { font-size:17px; font-weight:500; }
+.douban-post-detail .post-follow { background:#e94350; }
+.douban-post-detail .post-detail-author { padding:17px 14px 12px; }
+.douban-post-detail .post-detail-author strong { font-size:14px; color:#888; font-weight:400; }
+.douban-post-detail .post-detail-author small { font-size:11px; color:#aaa; }
+.douban-post-detail .post-follow { font-size:12px; padding:6px 15px; }
+.douban-post-detail .post-detail-body { font-size:17px; padding:5px 14px 24px; }
+.douban-detail-meta { padding:10px 14px; color:#999; font-size:11px; border-bottom:1px solid #eee; }
+.douban-post-detail .post-detail-actions { border:0; margin:0; padding:12px 16px; color:#888; }
+.douban-post-detail .post-detail-actions button { font-size:13px; }
+.douban-post-detail .post-detail-comment { padding:17px 14px; }
+.douban-post-detail .post-detail-comment > .catalog-avatar { width:43px; height:43px; border-radius:50%; }
+.douban-post-detail .post-detail-comment strong { color:#888; font-size:14px; font-weight:400; }
+.douban-post-detail .post-detail-comment p { font-size:16px; margin-top:5px; }
+.douban-post-detail .post-comment-actions { margin-top:5px; }
+.douban-post-detail .post-comment-actions button { color:#999; }
+.douban-post-detail .post-detail-reply { min-height:56px; }
+.dark-phone .douban-group-screen,.dark-phone .douban-topic,.dark-phone .douban-discussion-head { background:#fff; color:#171717; }
