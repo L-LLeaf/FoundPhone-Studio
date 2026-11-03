@@ -5005,3 +5005,14 @@ label {
 .douban-post-detail .post-comment-actions button { color:#999; }
 .douban-post-detail .post-detail-reply { min-height:56px; }
 .dark-phone .douban-group-screen,.dark-phone .douban-topic,.dark-phone .douban-discussion-head { background:#fff; color:#171717; }
+
+
+.douban-reply-tabs { display:flex; align-items:center; justify-content:space-around; height:49px; border-bottom:1px solid #e5e5e5; color:#888; }
+.douban-reply-tabs button { position:relative; font-size:14px; color:#888; padding:0 3px; height:100%; }
+.douban-reply-tabs button[aria-pressed="true"] { color:#171717; font-weight:600; }
+.douban-reply-tabs button[aria-pressed="true"]:after { content:""; position:absolute; left:15%; right:15%; bottom:0; height:3px; border-radius:3px; background:#222; }
+.douban-all-replies { display:flex; align-items:center; justify-content:space-between; padding:12px 14px; font-size:14px; }
+.douban-all-replies button { background:#f5f5f5; border-radius:9px; padding:8px 13px; font-size:13px; }
+.douban-post-detail .post-detail-comment > .catalog-avatar { border-radius:50%; }
+.douban-post-detail .post-detail-comment p { margin-top:2px; }
+.douban-post-detail .post-detail-comment > div:after { content:""; }
