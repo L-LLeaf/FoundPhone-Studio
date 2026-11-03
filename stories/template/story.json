@@ -59,6 +59,20 @@
       "phone": "",
       "avatar": "",
       "bio": ""
+    },
+    {
+      "id": "tf-family",
+      "name": "时代峰峻",
+      "phone": "",
+      "avatar": "",
+      "bio": ""
+    },
+    {
+      "id": "suxinhao-2",
+      "name": "苏新皓2",
+      "phone": "",
+      "avatar": "",
+      "bio": ""
     }
   ],
   "chats": [
@@ -208,7 +222,7 @@
       "app": "messages",
       "title": "时代峰峻",
       "participants": [
-        "owner"
+        "tf-family"
       ],
       "messages": [
         {
@@ -217,7 +231,7 @@
           "body": "T-FAMILY APP 双十一大促活动，明日重磅开启🎉「热爱加载中 双十二开抢」",
           "time": "2026-01-12 09:20",
           "sender": "时代峰峻",
-          "senderId": "时代峰峻",
+          "senderId": "tf-family",
           "read": true
         }
       ]
@@ -246,7 +260,7 @@
       "app": "messages",
       "title": "苏新皓2",
       "participants": [
-        "owner"
+        "suxinhao-2"
       ],
       "messages": [
         {
@@ -264,7 +278,7 @@
           "body": "[图片]",
           "time": "2026-01-11 23:42",
           "sender": "苏新皓2",
-          "senderId": "苏新皓2"
+          "senderId": "suxinhao-2"
         }
       ]
     }
