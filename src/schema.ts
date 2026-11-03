@@ -196,9 +196,7 @@ export function validateWork(input: unknown): Work {
   return workSchema.parse(input);
 }
 export function safeMedia(value: string) {
-  return /^data:(image\/(png|jpeg|webp|gif)|audio\/(mpeg|mp3|wav|ogg|webm|mp4)|video\/(mp4|webm));base64,[a-zA-Z0-9+/=\s]+$/.test(
-    value,
-  )
-    ? value
-    : "";
+  const embedded = /^data:(image\/(png|jpeg|webp|gif)|audio\/(mpeg|mp3|wav|ogg|webm|mp4)|video\/(mp4|webm));base64,[a-zA-Z0-9+/=\s]+$/.test(value);
+  const localAsset = /^(assets\/[a-zA-Z0-9_./-]+\.(?:png|jpe?g|webp|gif|m4a|mp3|wav|ogg|mp4|webm|mov))$/i.test(value) && !value.includes("..") && !value.includes("//");
+  return embedded ? value : localAsset ? value : "";
 }
