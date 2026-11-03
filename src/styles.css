@@ -4939,20 +4939,20 @@ label {
 .wx-moment-cover { height:255px; background-size:cover; background-position:center 38%; position:relative; display:flex; align-items:flex-end; justify-content:flex-end; padding:0 16px 16px; color:#fff; }
 .wx-moment-cover:after { content:""; position:absolute; inset:45% 0 0; background:linear-gradient(transparent,#0005); }
 .wx-moment-cover > span { position:relative; z-index:1; font-size:16px; text-shadow:0 1px 4px #0008; }
-.wx-moment-profile { display:flex; align-items:flex-start; justify-content:flex-end; gap:12px; min-height:98px; padding:0 16px 14px; }
-.wx-moment-profile > div { flex:1; text-align:right; padding-top:12px; }
+.wx-moment-profile { display:flex; align-items:flex-start; justify-content:flex-end; gap:12px; min-height:56px; padding:0 16px 0; }
+.wx-moment-profile > div { flex:1; min-width:0; text-align:right; padding-top:0; }
 .wx-moment-profile strong { font-size:17px; font-weight:600; }
-.wx-moment-profile p { margin-top:12px; color:#858585; font-size:13px; line-height:1.6; }
 .wx-moment-profile .skin-avatar { width:70px; height:70px; margin-top:-28px; position:relative; z-index:2; border:4px solid #fff; border-radius:3px; }
-.wx-moment-post { display:flex; align-items:flex-start; gap:13px; width:100%; padding:18px 14px; text-align:left; color:#171717; background:#fff; border:0; }
-.wx-moment-date { width:64px; flex:none; display:flex; align-items:baseline; gap:3px; padding-top:3px; }
+.wx-moment-signature { box-sizing:border-box; width:100%; margin:0; padding:8px 16px 18px; color:#858585; font-size:13px; line-height:1.6; text-align:right; }
+.wx-moment-post { display:grid; grid-template-columns:76px minmax(0,1fr); column-gap:12px; align-items:start; width:100%; padding:18px 14px; text-align:left; color:#171717; background:#fff; border:0; }
+.wx-moment-post > div { min-width:0; }
+.wx-moment-date { width:auto; display:flex; align-items:baseline; gap:3px; padding-top:3px; }
 .wx-moment-date strong { font-size:23px; font-weight:600; }
 .wx-moment-date small { font-size:11px; }
-.wx-moment-content { min-width:0; flex:1; display:flex; flex-direction:column; align-items:flex-start; gap:8px; }
+.wx-moment-content { min-width:0; width:100%; display:flex; flex-direction:column; align-items:flex-start; gap:8px; }
 .wx-moment-content p { width:100%; font-size:15px; line-height:1.5; margin:0 0 2px; text-align:left; }
-.wx-moment-content img { width:88px; height:88px; object-fit:cover; margin-top:0; }
+.wx-moment-content img { width:140px; max-width:100%; height:auto; object-fit:cover; margin-top:0; }
 .wx-moment-content small { color:#aaa; font-size:10px; align-self:flex-start; }
-.wx-moment-profile > div { flex:1; text-align:right; padding-top:12px; }
 .wx-moments .phone-add { margin:12px; }
 /* Douban group page: compact red header and plain discussion rows. */
 .douban-group-screen { background:#fff; color:#171717; }
