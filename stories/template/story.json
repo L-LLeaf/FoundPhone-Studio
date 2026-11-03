@@ -3,7 +3,7 @@
   "id": "foundphone-studio",
   "title": "FoundPhone · 苏新皓的手机",
   "description": "一台留下了真实使用痕迹的手机。",
-  "revision": 4,
+  "revision": 5,
   "phone": {
     "owner": "苏新皓",
     "date": "2026-01-12",
@@ -13,24 +13,144 @@
     "wallpaper": "assets/su.jpg",
     "theme": "light",
     "notifications": true,
-    "passcode": ""
+    "passcode": "0112"
   },
   "installedApps": [
-    "phone",
-    "messages",
-    "photos",
-    "safari",
-    "music",
-    "wechat",
-    "weibo",
-    "forum",
-    "contacts",
-    "camera",
-    "notes",
-    "calendar",
-    "clock",
-    "settings",
-    "appstore"
+    {
+      "id": "calendar",
+      "name": "日历",
+      "installed": true,
+      "visible": true,
+      "dock": false,
+      "folder": "",
+      "icon": ""
+    },
+    {
+      "id": "clock",
+      "name": "时钟",
+      "installed": true,
+      "visible": true,
+      "dock": false,
+      "folder": "",
+      "icon": ""
+    },
+    {
+      "id": "notes",
+      "name": "备忘录",
+      "installed": true,
+      "visible": true,
+      "dock": false,
+      "folder": "",
+      "icon": ""
+    },
+    {
+      "id": "contacts",
+      "name": "通讯录",
+      "installed": true,
+      "visible": true,
+      "dock": false,
+      "folder": "",
+      "icon": ""
+    },
+    {
+      "id": "camera",
+      "name": "相机",
+      "installed": true,
+      "visible": true,
+      "dock": false,
+      "folder": "",
+      "icon": ""
+    },
+    {
+      "id": "photos",
+      "name": "相册",
+      "installed": true,
+      "visible": true,
+      "dock": false,
+      "folder": "",
+      "icon": ""
+    },
+    {
+      "id": "settings",
+      "name": "设置",
+      "installed": true,
+      "visible": true,
+      "dock": false,
+      "folder": "",
+      "icon": ""
+    },
+    {
+      "id": "appstore",
+      "name": "App Store",
+      "installed": true,
+      "visible": true,
+      "dock": false,
+      "folder": "",
+      "icon": ""
+    },
+    {
+      "id": "music",
+      "name": "音乐",
+      "installed": true,
+      "visible": true,
+      "dock": false,
+      "folder": "",
+      "icon": ""
+    },
+    {
+      "id": "weibo",
+      "name": "微博",
+      "installed": true,
+      "visible": true,
+      "dock": false,
+      "folder": "",
+      "icon": ""
+    },
+    {
+      "id": "wechat",
+      "name": "微信",
+      "installed": true,
+      "visible": true,
+      "dock": false,
+      "folder": "",
+      "icon": ""
+    },
+    {
+      "id": "forum",
+      "name": "豆瓣",
+      "installed": true,
+      "visible": true,
+      "dock": false,
+      "folder": "",
+      "icon": ""
+    },
+    {
+      "id": "phone",
+      "name": "电话",
+      "installed": true,
+      "visible": true,
+      "dock": true,
+      "folder": "",
+      "icon": ""
+    },
+    {
+      "id": "messages",
+      "name": "信息",
+      "installed": true,
+      "visible": true,
+      "dock": true,
+      "folder": "",
+      "icon": ""
+    },
+    {
+      "id": "safari",
+      "name": "浏览器",
+      "installed": true,
+      "visible": true,
+      "dock": true,
+      "folder": "",
+      "icon": ""
+    }
   ],
   "contacts": [
     {
@@ -42,10 +162,10 @@
     },
     {
       "id": "suxinhao-1",
-      "name": "苏新皓1",
+      "name": "苏新皓",
       "phone": "",
       "avatar": "",
-      "bio": "已被对方屏蔽"
+      "bio": "已将机主拉入黑名单"
     },
     {
       "id": "suxinhao-c",
@@ -63,14 +183,14 @@
     },
     {
       "id": "tf-family",
-      "name": "时代峰峻",
+      "name": "sbfj",
       "phone": "",
       "avatar": "",
       "bio": ""
     },
     {
-      "id": "suxinhao-2",
-      "name": "苏新皓2",
+      "id": "hubby",
+      "name": "老公",
       "phone": "",
       "avatar": "",
       "bio": ""
@@ -93,7 +213,7 @@
           "sender": "李妃燕子99",
           "senderId": "li-feiyan",
           "read": false,
-          "avatar": "assets/avatars/avatar-3.jpg"
+          "avatar": ""
         },
         {
           "id": "wxli2",
@@ -103,7 +223,7 @@
           "sender": "李妃燕子99",
           "senderId": "li-feiyan",
           "read": false,
-          "avatar": "assets/avatars/avatar-3.jpg"
+          "avatar": ""
         },
         {
           "id": "wxli3",
@@ -113,80 +233,96 @@
           "sender": "李妃燕子99",
           "senderId": "li-feiyan",
           "read": false,
-          "avatar": "assets/avatars/avatar-3.jpg"
+          "avatar": ""
         }
       ]
     },
     {
       "id": "wx-blocked",
       "app": "wechat",
-      "title": "苏新皓1",
+      "title": "苏新皓",
       "participants": [
         "suxinhao-1"
       ],
       "messages": [
         {
           "id": "wxb1",
-          "title": "苏新皓1",
+          "title": "苏新皓",
           "body": "你今天是不是又没看手机？",
           "time": "2026-01-12 14:12",
           "sender": "苏新皓",
           "senderId": "owner",
           "outgoing": true,
-          "avatar": "assets/avatars/avatar-1.jpg"
+          "avatar": "",
+          "meta": {
+            "blockedSend": "true"
+          }
         },
         {
           "id": "wxb2",
-          "title": "苏新皓1",
+          "title": "苏新皓",
           "body": "我知道你在。",
           "time": "2026-01-12 14:16",
           "sender": "苏新皓",
           "senderId": "owner",
           "outgoing": true,
-          "avatar": "assets/avatars/avatar-1.jpg"
+          "avatar": "",
+          "meta": {
+            "blockedSend": "true"
+          }
         },
         {
           "id": "wxb3",
-          "title": "苏新皓1",
+          "title": "苏新皓",
           "body": "为什么不接电话？",
           "time": "2026-01-12 14:22",
           "sender": "苏新皓",
           "senderId": "owner",
           "outgoing": true,
-          "avatar": "assets/avatars/avatar-1.jpg"
+          "avatar": "",
+          "meta": {
+            "blockedSend": "true"
+          }
         },
         {
           "id": "wxb4",
-          "title": "苏新皓1",
+          "title": "苏新皓",
           "body": "我没有别的意思。",
           "time": "2026-01-12 14:31",
           "sender": "苏新皓",
           "senderId": "owner",
           "outgoing": true,
-          "avatar": "assets/avatars/avatar-1.jpg"
+          "avatar": "",
+          "meta": {
+            "blockedSend": "true"
+          }
         },
         {
           "id": "wxb5",
-          "title": "苏新皓1",
+          "title": "苏新皓",
           "body": "你就回我一句，好不好。",
           "time": "2026-01-12 14:43",
           "sender": "苏新皓",
           "senderId": "owner",
           "outgoing": true,
-          "avatar": "assets/avatars/avatar-1.jpg"
+          "avatar": "",
+          "meta": {
+            "blockedSend": "true"
+          }
         },
         {
           "id": "wxb6",
-          "title": "苏新皓1",
+          "title": "苏新皓",
           "body": "我在看着你",
           "time": "2026-01-12 15:02",
           "sender": "苏新皓",
           "senderId": "owner",
           "outgoing": true,
           "meta": {
-            "autoType": "1800"
+            "autoType": "900",
+            "blockedSend": "true"
           },
-          "avatar": "assets/avatars/avatar-1.jpg"
+          "avatar": ""
         }
       ]
     },
@@ -206,7 +342,7 @@
           "sender": "苏新皓C位",
           "senderId": "suxinhao-c",
           "read": true,
-          "avatar": "assets/avatars/avatar-3-alt.jpg"
+          "avatar": ""
         },
         {
           "id": "wxc2",
@@ -216,34 +352,34 @@
           "sender": "苏新皓C位",
           "senderId": "suxinhao-c",
           "read": true,
-          "avatar": "assets/avatars/avatar-3-alt.jpg"
+          "avatar": ""
         },
         {
           "id": "wxc3",
           "title": "苏新皓C位",
-          "body": "多少钱？私聊说。",
+          "body": "多少钱？",
           "time": "2026-01-11 22:20",
           "sender": "苏新皓C位",
           "senderId": "suxinhao-c",
           "read": true,
-          "avatar": "assets/avatars/avatar-3-alt.jpg"
+          "avatar": ""
         }
       ]
     },
     {
       "id": "sms-ad",
       "app": "messages",
-      "title": "时代峰峻",
+      "title": "sbfj",
       "participants": [
         "tf-family"
       ],
       "messages": [
         {
           "id": "sms1",
-          "title": "时代峰峻",
-          "body": "T-FAMILY APP 双十一大促活动，明日重磅开启🎉「热爱加载中 双十二开抢」",
+          "title": "sbfj",
+          "body": "T-FAIL APP 倒闭活动，明日重磅开启🎉",
           "time": "2026-01-12 09:20",
-          "sender": "时代峰峻",
+          "sender": "sbfj",
           "senderId": "tf-family",
           "read": true
         }
@@ -269,30 +405,63 @@
       ]
     },
     {
-      "id": "sms-sxh2",
+      "id": "sms-hubby",
       "app": "messages",
-      "title": "苏新皓2",
+      "title": "老公",
       "participants": [
-        "suxinhao-2"
+        "hubby"
       ],
       "messages": [
         {
-          "id": "sms3",
-          "title": "苏新皓2",
-          "body": "[图片]",
-          "time": "2026-01-11 23:41",
-          "sender": "苏新皓",
+          "id": "smsh1",
+          "title": "老公",
+          "body": "别拉黑我，不然我把你队友床照爆出去",
+          "time": "2026-01-12 14:02",
+          "sender": "我",
           "senderId": "owner",
-          "outgoing": true,
-          "avatar": "assets/avatars/avatar-1.jpg"
+          "outgoing": true
         },
         {
-          "id": "sms4",
-          "title": "苏新皓2",
-          "body": "[图片]",
-          "time": "2026-01-11 23:42",
-          "sender": "苏新皓2",
-          "senderId": "suxinhao-2"
+          "id": "smsh2",
+          "title": "老公",
+          "body": "有病去治",
+          "time": "2026-01-12 14:03",
+          "sender": "老公",
+          "senderId": "hubby"
+        },
+        {
+          "id": "smsh3",
+          "title": "老公",
+          "body": "[打码图片]",
+          "time": "2026-01-12 14:04",
+          "sender": "我",
+          "senderId": "owner",
+          "outgoing": true
+        },
+        {
+          "id": "smsh4",
+          "title": "老公",
+          "body": "？",
+          "time": "2026-01-12 14:05",
+          "sender": "老公",
+          "senderId": "hubby"
+        },
+        {
+          "id": "smsh5",
+          "title": "老公",
+          "body": "把我从黑名单拉出来",
+          "time": "2026-01-12 14:06",
+          "sender": "我",
+          "senderId": "owner",
+          "outgoing": true
+        },
+        {
+          "id": "smsh6",
+          "title": "老公",
+          "body": "滚！",
+          "time": "2026-01-12 14:07",
+          "sender": "老公",
+          "senderId": "hubby"
         }
       ]
     }
@@ -703,6 +872,24 @@
         "kind": "video",
         "media": "assets/video/photos-clip.mov",
         "folder": "最近项目"
+      }
+    ],
+    "notes": [
+      {
+        "id": "note1",
+        "title": "苏新皓C位❥(^_-)",
+        "body": "苏新皓C位❥(^_-)",
+        "time": "2026-01-12 15:20",
+        "sender": "苏新皓",
+        "folder": "备忘录"
+      },
+      {
+        "id": "note2",
+        "title": "SU1314",
+        "body": "5:20落地大兴。\n（车牌：京A·1SU12）",
+        "time": "2026-01-12 15:18",
+        "sender": "苏新皓",
+        "folder": "备忘录"
       }
     ]
   },
