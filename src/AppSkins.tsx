@@ -536,19 +536,9 @@ export function WeChatSkin(p: SkinProps) {
                   );
                 })}
               </div>
-              {p.items
-                .filter((i) => i.folder === "我")
-                .map((i) => (
-                  <button
-                    className="wx-discovery"
-                    key={i.id}
-                    onClick={() => p.onItem(i)}
-                  >
-                    <User size={18} />
-                    {i.title}
-                    <span>›</span>
-                  </button>
-                ))}
+              {selfProfile?.meta?.signature && (
+                <p className="wx-profile-signature">{selfProfile.meta.signature}</p>
+              )}
               {p.creator && (
                 <button className="phone-add" onClick={p.onAdd}>
                   编辑个人资料内容
