@@ -117,7 +117,7 @@ const definitions: [
   ],
   ["netease", "网易云音乐", "media", "#cd5659", Headphones, ["发现", "歌单"]],
   ["delivery", "外卖", "records", "#d4a83f", Utensils, ["商家", "订单"]],
-  ["forum", "论坛", "social", "#8b9776", Hash, ["帖子", "版块"]],
+  ["forum", "豆瓣", "social", "#8b9776", Hash, ["帖子", "版块"]],
   [
     "whatsapp",
     "WhatsApp",
