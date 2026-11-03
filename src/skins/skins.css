@@ -4263,8 +4263,11 @@
 .ios18 .native-notes .notes-list small {
   color: #222;
 }
+ .ios18 .native-notes .notes-list time {
+  color: #111;
+}
 .ios18 .native-notes .notes-footer {
-  color: #777;
+  color: #111;
   border-top-color: #eee;
   background: #fff;
 }
