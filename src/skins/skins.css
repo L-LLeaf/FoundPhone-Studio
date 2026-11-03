@@ -4232,3 +4232,109 @@
 .weibo-profile-page .weibo-post .social-actions button:last-child { margin-left:0; }
 .weibo-empty-tab { padding:35px 15px;text-align:center;color:#999;font-size:12px;background:#fff; }
 .weibo-more-menu { position:absolute;z-index:5;right:12px;top:48px;padding:10px 15px;background:#fff;border-radius:8px;box-shadow:0 3px 15px #0002;font-size:11px; }
+
+
+/* Notes app uses a minimal white-paper treatment throughout. */
+.ios18 .native-notes {
+  --app-accent: #222;
+  background: #fff;
+  color: #111;
+}
+.ios18 .native-notes .catalog-nav {
+  background: #fff;
+  color: #111;
+  border-bottom: 1px solid #eee;
+}
+.ios18 .native-notes .catalog-scroll,
+.ios18 .native-notes .notes-list {
+  background: #fff;
+  color: #111;
+}
+.ios18 .native-notes .notes-back,
+.ios18 .native-notes .note-folders > button {
+  color: #222;
+}
+.ios18 .native-notes .note-folders > button {
+  border-color: #e8e8e8;
+  background: #fff;
+}
+.ios18 .native-notes .notes-list strong,
+.ios18 .native-notes .notes-list p,
+.ios18 .native-notes .notes-list small {
+  color: #222;
+}
+.ios18 .native-notes .notes-footer {
+  color: #777;
+  border-top-color: #eee;
+  background: #fff;
+}
+.ios18 .app-screen.skin-notes .detail-content {
+  background: #fff;
+  color: #111;
+}
+.ios18 .app-screen.skin-notes .detail-content h2,
+.ios18 .app-screen.skin-notes .detail-content p {
+  color: #111;
+}
+
+/* WeChat: letter-by-letter composition and blocked-message failure marker. */
+.ios18 .wx-autotype {
+  justify-content: space-between;
+  gap: 8px;
+  background: #ededed;
+}
+.ios18 .wx-autotype-input {
+  flex: 1;
+  min-width: 0;
+  min-height: 32px;
+  padding: 7px 10px;
+  border-radius: 7px;
+  background: #fff;
+  color: #171717;
+  font-size: 13px;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.ios18 .wx-autotype-input i {
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  margin-left: 2px;
+  vertical-align: -2px;
+  background: #07c160;
+  animation: wx-caret 0.8s steps(2, start) infinite;
+}
+@keyframes wx-caret { to { visibility: hidden; } }
+.ios18 .wx-autotype-send {
+  padding: 7px 12px;
+  border-radius: 6px;
+  background: #07c160;
+  color: #fff;
+  font-size: 12px;
+}
+.ios18 .wx-autotype-send:disabled {
+  opacity: .45;
+}
+.ios18 .wx-autotype.is-sending .wx-autotype-send {
+  transform: scale(.94);
+  filter: brightness(.9);
+}
+.ios18 .wx-send-failed {
+  display: inline-grid;
+  place-items: center;
+  align-self: center;
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  margin: 0 3px;
+  border: 1.5px solid #e5484d;
+  border-radius: 50%;
+  color: #e5484d;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+}
+.ios18 .wx-contact {
+  justify-content: flex-start;
+  text-align: left;
+}
