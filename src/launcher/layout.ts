@@ -57,7 +57,7 @@ export function defaultLayout(input: Work): DeviceLayout {
   return {
     version: 1,
     workId: w.id,
-    previewLayoutRevision: w.id === "ui-test-phone-v2" ? 1 : 0,
+    previewLayoutRevision: w.id === "foundphone-studio" ? 2 : w.id === "ui-test-phone-v2" ? 1 : 0,
     apps: structuredClone(w.apps)
       .map((a) => {
         const native = new Set(["appstore","phone","messages","contacts","photos","camera","safari","notes","calendar","mail","clock","reminders","files","music","maps","weather","wallet","health","find","calculator","settings"]);
@@ -72,8 +72,12 @@ export function defaultLayout(input: Work): DeviceLayout {
           ? { ...a, installed: true, visible: true, folder: "", dock: false }
           : a,
       ),
-    widgets: [],
-    order: [],
+    widgets: w.id === "foundphone-studio"
+      ? [{ id: "widget-notes-home", type: "notes", size: "medium" }]
+      : [],
+    order: w.id === "foundphone-studio"
+      ? ["widget-notes-home", "calendar", "clock", "notes", "contacts", "camera", "photos", "settings", "appstore", "music", "weibo", "wechat", "forum"]
+      : [],
     cleared: [],
     positions: {},
   };
@@ -100,6 +104,23 @@ export function validateLayout(raw: unknown, input: Work) {
     store.installed = true;
     store.visible = true;
     store.folder = "";
+  }
+  if (w.id === "foundphone-studio" && layout.previewLayoutRevision < 2) {
+    const homeOrder = ["calendar", "clock", "notes", "contacts", "camera", "photos", "settings", "appstore", "music", "weibo", "wechat", "forum"];
+    const dockIds = new Set(["phone", "messages", "safari"]);
+    for (const app of layout.apps) {
+      const source = w.apps.find((candidate) => candidate.id === app.id);
+      if (source) app.name = source.name;
+      app.folder = "";
+      app.dock = dockIds.has(app.id);
+      app.visible = homeOrder.includes(app.id) || dockIds.has(app.id);
+      if (app.visible) app.installed = true;
+    }
+    if (!layout.widgets.some((widget) => widget.id === "widget-notes-home"))
+      layout.widgets.unshift({ id: "widget-notes-home", type: "notes", size: "medium" });
+    layout.order = ["widget-notes-home", ...homeOrder, ...layout.widgets.map((widget) => widget.id).filter((id) => id !== "widget-notes-home")];
+    layout.positions = {};
+    layout.previewLayoutRevision = 2;
   }
   if (w.id === "ui-test-phone-v2" && layout.previewLayoutRevision < 1) {
     const visibleApps = ["wechat", "douyin"];
