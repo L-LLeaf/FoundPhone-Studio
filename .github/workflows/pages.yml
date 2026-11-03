@@ -18,8 +18,22 @@ jobs:
       - name: Install and normalize uploaded phone media
         run: |
           if [ -f FoundPhone-assets-upload.zip ]; then
-            mkdir -p public
-            unzip -oq FoundPhone-assets-upload.zip -d public/
+            rm -rf /tmp/phone-assets-unpack
+            mkdir -p /tmp/phone-assets-unpack public/assets
+            unzip -oq FoundPhone-assets-upload.zip -d /tmp/phone-assets-unpack
+            # The supplied archive wraps its payload in FoundPhone-assets-upload/assets/.
+            if [ -d /tmp/phone-assets-unpack/FoundPhone-assets-upload/assets ]; then
+              cp -a /tmp/phone-assets-unpack/FoundPhone-assets-upload/assets/. public/assets/
+            elif [ -d /tmp/phone-assets-unpack/assets ]; then
+              cp -a /tmp/phone-assets-unpack/assets/. public/assets/
+            else
+              echo "Could not find an assets/ directory inside FoundPhone-assets-upload.zip" >&2
+              find /tmp/phone-assets-unpack -maxdepth 3 -type d -print
+              exit 1
+            fi
+          else
+            echo "FoundPhone-assets-upload.zip is missing from the repository root" >&2
+            exit 1
           fi
 
           # The two Moments photos are stored at the assets root in the uploaded archive.
