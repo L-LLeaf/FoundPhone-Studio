@@ -96,8 +96,13 @@ function WidgetFace({
           {(work.data.notes || [])
             .filter((i) => !i.hidden && !i.password)
             .slice(0, 3)
-            .map((i) => (
-              <small key={i.id}>{i.title}</small>
+            .map((i, index) => (
+              <small
+                key={i.id}
+                className={index === 0 ? "widget-note-feature" : ""}
+              >
+                {i.title}
+              </small>
             ))}
           {!(work.data.notes || []).some((i) => !i.hidden && !i.password) && (
             <small>无备忘录</small>
