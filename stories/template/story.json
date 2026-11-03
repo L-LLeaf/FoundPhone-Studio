@@ -3,7 +3,7 @@
   "id": "foundphone-studio",
   "title": "FoundPhone · 苏新皓的手机",
   "description": "一台留下了真实使用痕迹的手机。",
-  "revision": 5,
+  "revision": 6,
   "phone": {
     "owner": "苏新皓",
     "date": "2026-01-12",
@@ -890,6 +890,19 @@
         "time": "2026-01-12 15:18",
         "sender": "苏新皓",
         "folder": "备忘录"
+      }
+    ],
+    "wechat": [
+      {
+        "id": "wx-self-profile",
+        "title": "sxh的🐶",
+        "body": "",
+        "time": "2026-01-12 15:20",
+        "sender": "sxh的🐶",
+        "folder": "我",
+        "meta": {
+          "wechatId": "SXHCWEI"
+        }
       }
     ]
   },
