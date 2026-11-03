@@ -376,7 +376,7 @@ export function WeChatSkin(p: SkinProps) {
       ) : moments ? (
         <div className="wx-moments">
           <div className="wx-moment-cover" style={{ backgroundImage: "url(assets/moments/moments-cover.jpg)" }}>
-            <span>朋友圈</span>
+            
           </div>
           <div className="wx-moment-profile">
             <div><strong>{selfProfile?.title || "我"}</strong><p>{selfProfile?.meta?.signature || " "}</p></div>
