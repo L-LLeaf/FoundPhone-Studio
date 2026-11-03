@@ -122,7 +122,18 @@ export function validateLayout(raw: unknown, input: Work) {
     layout.positions = {};
     layout.previewLayoutRevision = 2;
   }
-  if (w.id === "foundphone-studio" && layout.previewLayoutRevision < 3) {\n    const homeWidget = layout.widgets.find((widget) => widget.id === "widget-notes-home");\n    if (homeWidget) {\n      homeWidget.type = "countdown";\n      homeWidget.size = "medium";\n    } else {\n      layout.widgets.unshift({ id: "widget-notes-home", type: "countdown", size: "medium" });\n    }\n    layout.order = ["widget-notes-home", ...layout.order.filter((id) => id !== "widget-notes-home")];\n    layout.previewLayoutRevision = 3;\n  }\n  if (w.id === "ui-test-phone-v2" && layout.previewLayoutRevision < 1) {
+  if (w.id === "foundphone-studio" && layout.previewLayoutRevision < 3) {
+    const homeWidget = layout.widgets.find((widget) => widget.id === "widget-notes-home");
+    if (homeWidget) {
+      homeWidget.type = "countdown";
+      homeWidget.size = "medium";
+    } else {
+      layout.widgets.unshift({ id: "widget-notes-home", type: "countdown", size: "medium" });
+    }
+    layout.order = ["widget-notes-home", ...layout.order.filter((id) => id !== "widget-notes-home")];
+    layout.previewLayoutRevision = 3;
+  }
+  if (w.id === "ui-test-phone-v2" && layout.previewLayoutRevision < 1) {
     const visibleApps = ["wechat", "douyin"];
     for (const app of layout.apps) {
       if (
