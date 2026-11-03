@@ -22,6 +22,15 @@ jobs:
             unzip -oq FoundPhone-assets-upload.zip -d public/
           fi
 
+          # The two Moments photos are stored at the assets root in the uploaded archive.
+          mkdir -p public/assets/moments
+          if [ -f "public/assets/微信朋友圈封面.jpg" ]; then
+            cp "public/assets/微信朋友圈封面.jpg" public/assets/moments/moments-cover.jpg
+          fi
+          if [ -f "public/assets/朋友圈配图拍你一辈子.jpg" ]; then
+            cp "public/assets/朋友圈配图拍你一辈子.jpg" public/assets/moments/moments-post-camera.jpg
+          fi
+
           # Normalize user-supplied filenames to the paths referenced by the story.
           if [ -d public/assets/audio ]; then
             audio_file="$(find public/assets/audio -maxdepth 1 -type f \( -iname '*.m4a' -o -iname '*.mp3' -o -iname '*.wav' \) | head -n 1)"
