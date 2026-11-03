@@ -528,3 +528,14 @@
   opacity: 0.4;
   cursor: default;
 }
+
+
+/* Story-specific Notes widget: clean white paper with black type. */
+.ios18 .widget-notes {
+  background: #fff;
+  color: #111;
+}
+.ios18 .widget-notes strong,
+.ios18 .widget-notes small {
+  color: #111;
+}
