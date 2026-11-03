@@ -4918,3 +4918,16 @@ label {
   background: #e34f58;
   transform: rotate(135deg);
 }
+
+
+/* Keep WeChat address-book rows consistently left aligned. */
+.ios18 .wx-contact {
+  justify-content: flex-start;
+  text-align: left;
+}
+.ios18 .wx-profile-signature {
+  padding: 0 18px 14px 86px;
+  color: #777;
+  font-size: 12px;
+  line-height: 1.5;
+}
