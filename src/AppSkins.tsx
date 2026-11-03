@@ -206,9 +206,12 @@ export function WeChatSkin(p: SkinProps) {
       const timer = setTimeout(() => setSending(true), 450);
       return () => clearTimeout(timer);
     }
+    const nextChar = typingItem.body[typingText.length];
+    const punctuation = /[，。！？、…；：,.!?]/.test(nextChar);
+    const pause = punctuation ? 260 : /[我你他她它是有在不吗呢]/.test(nextChar) ? 105 : 68;
     const timer = setTimeout(
       () => setTypingText(typingItem.body.slice(0, typingText.length + 1)),
-      82,
+      pause,
     );
     return () => clearTimeout(timer);
   }, [typingFor, typingText, typingItem?.body]);
@@ -351,7 +354,7 @@ export function WeChatSkin(p: SkinProps) {
           {blockedToast && p.thread === "苏新皓" && (
             <div className="wx-blocked-toast" role="status">
               <strong>微信</strong>
-              <span>{threadItems.filter((i) => i.meta?.blockedSend === "true").length}条消息未发送</span>
+              <span>1条消息未发送</span>
               <div><button onClick={() => setBlockedToast(false)}>忽略</button><button onClick={() => setBlockedToast(false)}>重新发送</button></div>
             </div>
           )}
