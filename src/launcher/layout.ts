@@ -6,7 +6,7 @@ export const widgetSchema = z.object({
     .string()
     .regex(/^widget-[a-zA-Z0-9-]+$/)
     .max(80),
-  type: z.enum(["calendar", "clock", "weather", "notes", "battery"]),
+  type: z.enum(["calendar", "clock", "weather", "notes", "countdown", "battery"]),
   size: z.enum(["small", "medium", "large"]),
 });
 export const layoutSchema = z
@@ -57,7 +57,7 @@ export function defaultLayout(input: Work): DeviceLayout {
   return {
     version: 1,
     workId: w.id,
-    previewLayoutRevision: w.id === "foundphone-studio" ? 2 : w.id === "ui-test-phone-v2" ? 1 : 0,
+    previewLayoutRevision: w.id === "foundphone-studio" ? 3 : w.id === "ui-test-phone-v2" ? 1 : 0,
     apps: structuredClone(w.apps)
       .map((a) => {
         const native = new Set(["appstore","phone","messages","contacts","photos","camera","safari","notes","calendar","mail","clock","reminders","files","music","maps","weather","wallet","health","find","calculator","settings"]);
@@ -73,7 +73,7 @@ export function defaultLayout(input: Work): DeviceLayout {
           : a,
       ),
     widgets: w.id === "foundphone-studio"
-      ? [{ id: "widget-notes-home", type: "notes", size: "medium" }]
+      ? [{ id: "widget-notes-home", type: "countdown", size: "medium" }]
       : [],
     order: w.id === "foundphone-studio"
       ? ["widget-notes-home", "calendar", "clock", "notes", "contacts", "camera", "photos", "settings", "appstore", "music", "weibo", "wechat", "forum"]
@@ -122,7 +122,7 @@ export function validateLayout(raw: unknown, input: Work) {
     layout.positions = {};
     layout.previewLayoutRevision = 2;
   }
-  if (w.id === "ui-test-phone-v2" && layout.previewLayoutRevision < 1) {
+  if (w.id === "foundphone-studio" && layout.previewLayoutRevision < 3) {\n    const homeWidget = layout.widgets.find((widget) => widget.id === "widget-notes-home");\n    if (homeWidget) {\n      homeWidget.type = "countdown";\n      homeWidget.size = "medium";\n    } else {\n      layout.widgets.unshift({ id: "widget-notes-home", type: "countdown", size: "medium" });\n    }\n    layout.order = ["widget-notes-home", ...layout.order.filter((id) => id !== "widget-notes-home")];\n    layout.previewLayoutRevision = 3;\n  }\n  if (w.id === "ui-test-phone-v2" && layout.previewLayoutRevision < 1) {
     const visibleApps = ["wechat", "douyin"];
     for (const app of layout.apps) {
       if (
