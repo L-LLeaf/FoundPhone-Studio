@@ -538,7 +538,7 @@ export function ForumSkin(p: Props) {
           <button aria-label="更多" className="douban-more">•••</button>
         </div>
         <div className="douban-group-summary">
-          <Avatar name={groupName} src={groupItem?.avatar}/>
+          <Avatar name={groupName} src={groupItem?.avatar || "assets/douban/group-reference.jpg"}/>
           <div><strong>{groupName}</strong><small>45316 人正在讨论 ›</small></div>
           <span className="douban-joined">已加入</span>
         </div>
