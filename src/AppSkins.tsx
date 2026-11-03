@@ -351,7 +351,7 @@ export function WeChatSkin(p: SkinProps) {
           {blockedToast && p.thread === "苏新皓" && (
             <div className="wx-blocked-toast" role="status">
               <strong>微信</strong>
-              <span>你有8条消息未发送</span>
+              <span>{threadItems.filter((i) => i.meta?.blockedSend === "true").length}条消息未发送</span>
               <div><button onClick={() => setBlockedToast(false)}>忽略</button><button onClick={() => setBlockedToast(false)}>重新发送</button></div>
             </div>
           )}
