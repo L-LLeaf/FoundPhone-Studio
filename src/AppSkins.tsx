@@ -103,37 +103,42 @@ function MessageList({
     <div className={`skin-messages ${whatsapp ? "wa-wallpaper" : ""}`}>
       <div className="skin-date">{items[0]?.time.slice(0, 10)}</div>
       {items.map((i) => (
-        <div
-          key={i.id}
-          className={`skin-message ${i.outgoing ? "outgoing" : ""}`}
-        >
-          {!whatsapp && !i.outgoing && (
-            <Avatar name={i.sender} src={i.avatar} />
-          )}
-          <button
-            className="skin-bubble"
-            onClick={() => (creator ? onItem(i) : onRead(i.id))}
+        <>
+          <div
+            key={i.id}
+            className={`skin-message ${i.outgoing ? "outgoing" : ""} ${i.meta?.blockedSend === "true" && !whatsapp ? "blocked-message" : ""}`}
           >
-            {["image", "audio", "video"].includes(i.kind) ? (
-              <ItemMedia item={i} />
-            ) : i.kind === "transfer" ? (
-              <div className="skin-transfer">
-                ¥ {i.body}
-                <small>转账记录 · 虚构</small>
-              </div>
-            ) : (
-              i.body
+            {!whatsapp && !i.outgoing && (
+              <Avatar name={i.sender} src={i.avatar} />
             )}
-            <small className={whatsapp ? undefined : "wx-message-time"}>
-              {i.time.slice(-5)}{" "}
-              {whatsapp && i.outgoing && <CheckCheck size={11} />}
-            </small>
-          </button>
+            {i.meta?.blockedSend === "true" && !whatsapp && (
+              <span className="wx-send-failed" aria-label="消息发送失败">!</span>
+            )}
+            <button
+              className="skin-bubble"
+              onClick={() => (creator ? onItem(i) : onRead(i.id))}
+            >
+              {["image", "audio", "video"].includes(i.kind) ? (
+                <ItemMedia item={i} />
+              ) : i.kind === "transfer" ? (
+                <div className="skin-transfer">
+                  ¥ {i.body}
+                  <small>转账记录 · 虚构</small>
+                </div>
+              ) : (
+                i.body
+              )}
+              <small className={whatsapp ? undefined : "wx-message-time"}>
+                {i.time.slice(-5)}{" "}
+                {whatsapp && i.outgoing && <CheckCheck size={11} />}
+              </small>
+            </button>
+            {!whatsapp && i.outgoing && <Avatar name={selfName || i.sender} src={selfAvatar || i.avatar} />}
+          </div>
           {i.meta?.blockedSend === "true" && !whatsapp && (
-            <span className="wx-send-failed" aria-label="消息发送失败，对方已将你拉黑">!</span>
+            <div className="wx-reject-notice" role="status">消息已发出，但被对方拒收了。</div>
           )}
-          {!whatsapp && i.outgoing && <Avatar name={selfName || i.sender} src={selfAvatar || i.avatar} />}
-        </div>
+        </>
       ))}
     </div>
   );
@@ -173,6 +178,7 @@ export function WeChatSkin(p: SkinProps) {
   const [typingFor, setTypingFor] = useState("");
   const [typingText, setTypingText] = useState("");
   const [sending, setSending] = useState(false);
+  const [blockedToast, setBlockedToast] = useState(false);
   const selfProfile = p.items.find((i) => i.folder === "我");
   const threadItems = p.thread
     ? p.items.filter((i) => i.title === p.thread)
@@ -210,6 +216,7 @@ export function WeChatSkin(p: SkinProps) {
     if (!sending || !typingFor) return;
     const timer = setTimeout(() => {
       setTypedIds((v) => (v.includes(typingFor) ? v : [...v, typingFor]));
+      setBlockedToast(true);
       setTypingFor("");
       setTypingText("");
       setSending(false);
@@ -341,6 +348,13 @@ export function WeChatSkin(p: SkinProps) {
             selfName={selfProfile?.title || "我"}
             selfAvatar={selfProfile?.avatar}
           />
+          {blockedToast && p.thread === "苏新皓" && (
+            <div className="wx-blocked-toast" role="status">
+              <strong>微信</strong>
+              <span>你有8条消息未发送</span>
+              <div><button onClick={() => setBlockedToast(false)}>忽略</button><button onClick={() => setBlockedToast(false)}>重新发送</button></div>
+            </div>
+          )}
           {typingFor ? (
             <div className={`wx-autotype ${sending ? "is-sending" : ""}`} aria-live="polite">
               <span className="wx-autotype-input">{typingText}<i /></span>
