@@ -192,14 +192,16 @@ export function SocialDetail(p: {
               </button>
             ))}
           </div>
+        ) : douban ? (
+          <div className="douban-reply-tabs">
+            {["回复 113", "赞", "转发", "收藏", "礼物"].map((label) => (
+              <button key={label} aria-pressed={label.startsWith("回复") ? tab === "评论" : tab === label} onClick={() => setTab(label.startsWith("回复") ? "评论" : label)}>{label}</button>
+            ))}
+          </div>
         ) : (
           <div className="x-related-row">
-            <button onClick={() => setSort(!sort)}>
-              {sort ? "最新" : "相关"}⌄
-            </button>
-            <button onClick={() => setTab(tab === "转发" ? "评论" : "转发")}>
-              查看引用 ›
-            </button>
+            <button onClick={() => setSort(!sort)}>{sort ? "最新" : "相关"}⌄</button>
+            <button onClick={() => setTab(tab === "转发" ? "评论" : "转发")}>查看引用 ›</button>
           </div>
         )}
         {weibo && (
@@ -207,7 +209,9 @@ export function SocialDetail(p: {
             {sort ? "按时间" : "按热度"}⌄
           </button>
         )}
-        {tab === "评论" ? (
+        {(tab === "评论" || (douban && tab === "回复 113")) ? (
+          <>
+          {douban && <div className="douban-all-replies"><span>全部回复</span><button>楼主⌄</button></div>}
           <div className="post-detail-comments">
             {replies.map((c, index) => {
               const split = c.search(/[：:]/),
@@ -216,7 +220,7 @@ export function SocialDetail(p: {
                 body = hasName ? c.slice(split + 1) : c;
               return (
                 <article key={index} className="post-detail-comment">
-                  <Avatar name={name} />
+                  <Avatar name={name} src={douban && name === "momo" ? "assets/douban/reply-avatar-1.jpg" : douban && name === "为什么要上班" ? "assets/douban/reply-avatar-2.jpg" : ""} />
                   <div>
                     <strong>{name}</strong>
                     <p>{body}</p>
@@ -243,6 +247,7 @@ export function SocialDetail(p: {
             })}
             {!replies.length && <p className="post-comments-empty">暂无评论</p>}
           </div>
+          </>
         ) : (
           <p className="post-comments-empty">
             {tab === "转发" ? "暂无可展开的转发记录" : "暂无更多记录"}
