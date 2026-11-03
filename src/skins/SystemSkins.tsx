@@ -770,6 +770,7 @@ export function MusicSkin(p: Props) {
   const song = track ?? items[0] ?? null;
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
+  const [liked, setLiked] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [duration, setDuration] = useState(0);
   const toggle = async () => {
@@ -798,7 +799,14 @@ export function MusicSkin(p: Props) {
           </div>
           <div className="apple-track-title">
             <div><strong>{song.title}</strong><small>{song.sender || "苏新皓"}</small></div>
-            <button aria-label="添加到资料库"><Heart size={22} /></button>
+            <button
+              aria-label={liked ? "取消喜欢" : "喜欢这首歌"}
+              aria-pressed={liked}
+              onClick={() => setLiked((value) => !value)}
+              style={{ color: liked ? "#ff3b5c" : "inherit" }}
+            >
+              <Heart size={22} fill={liked ? "currentColor" : "none"} />
+            </button>
           </div>
           <div className="apple-progress">
             <div className="apple-progress-track"><i style={{width: `${Math.min(100, elapsed / duration * 100)}%`}} /></div>
