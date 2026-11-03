@@ -539,3 +539,22 @@
 .ios18 .widget-notes small {
   color: #111;
 }
+
+
+/* Center and feature the first line in the home-screen Notes widget. */
+.ios18 .widget-notes {
+  align-items: center;
+  text-align: center;
+}
+.ios18 .widget-notes .widget-note-feature {
+  width: 100%;
+  max-width: 100%;
+  font-size: 19px;
+  font-weight: 650;
+  line-height: 1.35;
+  color: #111;
+  text-align: center;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
