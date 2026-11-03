@@ -59,7 +59,7 @@ function Avatar({
 }) {
   return (
     <span className={`skin-avatar ${round ? "round" : ""}`}>
-      {safeMedia(src)?.startsWith("data:image/") ? (
+      {safeMedia(src) ? (
         <img src={safeMedia(src)} alt="" />
       ) : (
         name.slice(0, 1)
