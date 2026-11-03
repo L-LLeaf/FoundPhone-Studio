@@ -81,6 +81,33 @@ jobs:
               if [ "$video_file" != "public/assets/video/photos-clip.mov" ]; then cp "$video_file" public/assets/video/photos-clip.mov; fi
             fi
           fi
+      - name: Verify every uploaded phone asset
+        run: |
+          required=(
+            public/assets/audio/day-by-day.m4a
+            public/assets/avatars/weibo-avatar.jpg
+            public/assets/avatars/wechat-avatar.jpg
+            public/assets/douban/group-reference.jpg
+            public/assets/moments/moments-cover.jpg
+            public/assets/moments/moments-post-camera.jpg
+            public/assets/video/photos-clip.mov
+            public/assets/su.jpg
+          )
+          for n in $(seq -w 1 11); do required+=("public/assets/gallery/$n.jpg"); done
+          missing=0
+          for file in "${required[@]}"; do
+            if [ ! -s "$file" ]; then
+              echo "MISSING OR EMPTY: $file" >&2
+              missing=1
+            else
+              echo "OK: $file ($(stat -c%s "$file") bytes)"
+            fi
+          done
+          if [ "$missing" -ne 0 ]; then
+            echo "One or more required phone assets were not extracted correctly." >&2
+            exit 1
+          fi
+          echo "All phone images, avatars, video, audio and wallpaper are present."
       - uses: actions/setup-node@v4
         with:
           node-version: 22
