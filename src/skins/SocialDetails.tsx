@@ -23,7 +23,7 @@ import { RichText } from "../RichText";
 import { Avatar, Media, meta } from "./shared";
 import type { Item, UiValue } from "../schema";
 import "./social-details.css";
-export const socialDetailApps = new Set(["twitter", "weibo"]);
+export const socialDetailApps = new Set(["twitter", "weibo", "forum"]);
 const count = (n: number) =>
   n >= 10000 ? (n / 10000).toFixed(1).replace(/\.0$/, "") + "w" : String(n);
 export function SocialDetail(p: {
@@ -35,7 +35,8 @@ export function SocialDetail(p: {
   onUi?: (key: string, value: UiValue) => void;
 }) {
   const { item } = p,
-    weibo = p.app === "weibo";
+    weibo = p.app === "weibo",
+    douban = p.app === "forum";
   const [liked, setLiked] = useSkinState<boolean>(p, "liked-" + item.id, false),
     [saved, setSaved] = useSkinState<boolean>(p, "saved-" + item.id, false),
     [followed, setFollowed] = useSkinState<boolean>(
@@ -105,9 +106,7 @@ export function SocialDetail(p: {
     <div
       className={
         "app-post-detail " +
-        (weibo
-          ? "weibo-post-detail"
-          : "x-post-detail" +
+        (weibo ? "weibo-post-detail" : douban ? "douban-post-detail" : "x-post-detail" +
             (p.ui?.["x-dark"] !== false ? " x-reference-dark" : ""))
       }
     >
@@ -115,7 +114,7 @@ export function SocialDetail(p: {
         <button aria-label="返回帖子列表" onClick={p.back}>
           <ChevronLeft size={27} />
         </button>
-        <strong>{weibo ? "微博正文" : "帖子"}</strong>
+        <strong>{weibo ? "微博正文" : douban ? "帖子详情" : "帖子"}</strong>
         <div>
           {weibo && <Headphones size={23} />}
           <button aria-label="帖子更多选项" onClick={() => setMenu(!menu)}>
@@ -134,7 +133,7 @@ export function SocialDetail(p: {
                 : meta(item, "handle", item.sender ? "@" + item.sender : "")}
             </small>
           </div>
-          {weibo ? (
+          {weibo || douban ? (
             <button
               aria-label="关注作者"
               onClick={() => setFollowed(!followed)}
@@ -166,6 +165,8 @@ export function SocialDetail(p: {
               </button>
             ))}
           </div>
+        ) : douban ? (
+          <div className="douban-detail-meta">{item.time} · 来自淋雨大吉</div>
         ) : (
           <>
             <div className="x-post-metadata">
@@ -268,7 +269,7 @@ export function SocialDetail(p: {
           <Send size={20} />
         </button>
       </form>
-      {!weibo && (
+      {!weibo && !douban && (
         <nav className="x-detail-bottom">
           {[Home, Search, Circle, Bell, MessageCircle].map((Icon, n) => (
             <button
