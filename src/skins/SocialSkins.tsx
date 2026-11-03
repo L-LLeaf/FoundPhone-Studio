@@ -73,6 +73,7 @@ function PostHeader({ item, p }: { item: Item; p: Props }) {
 }
 export function WeiboSkin(p: Props) {
   const { items } = useContent(p, "微博");
+  const [likedPosts, setLikedPosts] = useSkinState<string[]>(p, "likedPosts", []);
   const profileItem = items.find((i) => meta(i, "weiboCount")) ?? items[0];
   const profileName = profileItem?.sender || p.owner || "m0on_7xq__";
   const [tab, setTab] = useState("微博");
@@ -127,7 +128,11 @@ export function WeiboSkin(p: Props) {
             <div className="social-actions weibo-actions">
               <button onClick={() => p.onItem(i)}><Share2 size={17} /> 转发</button>
               <button onClick={() => p.onItem(i)}><MessageCircle size={17} /> 评论</button>
-              <button onClick={() => p.onItem(i)}><ThumbsUp size={17} /> {i.likes || "赞"}</button>
+              <button
+                aria-label={likedPosts.includes(i.id) ? "取消点赞" : "点赞"}
+                className={likedPosts.includes(i.id) ? "liked" : ""}
+                onClick={() => setLikedPosts((v) => v.includes(i.id) ? v.filter((id) => id !== i.id) : [...v, i.id])}
+              ><ThumbsUp size={17} fill={likedPosts.includes(i.id) ? "currentColor" : "none"} /> {i.likes + (likedPosts.includes(i.id) ? 1 : 0) || "赞"}</button>
             </div>
           </article>
         )) : (
@@ -518,7 +523,7 @@ function RedditPost({ p, item: i }: { p: Props; item: Item }) {
   );
 }
 export function ForumSkin(p: Props) {
-  const { tab, setTab, q, setQ, items } = useContent(p, "全部");
+  const { q, setQ, items } = useContent(p, "全部");
   const [sort, setSort] = useState("最新");
   const groupItem = items.find((i) => meta(i, "groupIntro") || i.avatar);
   const groupName = groupItem?.folder || "淋雨大吉";
@@ -530,7 +535,7 @@ export function ForumSkin(p: Props) {
         <div className="douban-topline">
           <button aria-label="返回" onClick={p.onBack}><ChevronLeft size={23}/></button>
           <label><Search size={15}/><input value={q} onChange={e=>setQ(e.target.value)} placeholder="组内搜索｜帖子和讨论"/></label>
-          <button aria-label="更多">•••</button>
+          <button aria-label="更多" className="douban-more">•••</button>
         </div>
         <div className="douban-group-summary">
           <Avatar name={groupName} src={groupItem?.avatar}/>
@@ -541,9 +546,6 @@ export function ForumSkin(p: Props) {
           <p><b>小组简介：</b>{meta(groupItem,"groupIntro","我也是个念旧的人。")}</p>
           <p><b>发言规则：</b>请友善讨论，理性表达 <ChevronRight size={15}/></p>
         </div>
-      </div>
-      <div className="douban-categories">
-        {["全部","水帖大楼房","梨子桃子铺","心动贩卖所"].map((t,i)=><button key={t} className={(tab===t || (tab==="全部"&&i===0))?"selected":""} onClick={()=>setTab(t)}>{t}</button>)}
       </div>
       <div className="douban-discussion-head">
         <strong>讨论列表</strong>
