@@ -25,7 +25,6 @@ import {
   Grid,
   CheckCheck,
   AtSign,
-  Star,
   Music,
   Image as ImageIcon,
   Layers,
