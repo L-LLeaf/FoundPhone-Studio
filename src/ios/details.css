@@ -43,7 +43,8 @@
 }
 .ios18 .native-note-paper {
   padding: 4px 20px 24px;
-  background: #fffdf8;
+  background: #fff;
+  color: #111;
   line-height: 1.5;
 }
 .ios18 .native-note-paper > time {
