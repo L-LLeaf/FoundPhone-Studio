@@ -534,7 +534,6 @@ export function ForumSkin(p: Props) {
       <div className="douban-red-head">
         <div className="douban-topline">
           <button aria-label="返回" onClick={p.onBack}><ChevronLeft size={23}/></button>
-          <label><Search size={15}/><input value={q} onChange={e=>setQ(e.target.value)} placeholder="组内搜索｜帖子和讨论"/></label>
           <button aria-label="更多" className="douban-more">•••</button>
         </div>
         <div className="douban-group-summary">
