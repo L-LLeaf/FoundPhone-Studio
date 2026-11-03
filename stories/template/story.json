@@ -92,7 +92,8 @@
           "time": "2026-01-12 14:48",
           "sender": "李妃燕子99",
           "senderId": "li-feiyan",
-          "read": false
+          "read": false,
+          "avatar": "assets/avatars/avatar-3.jpg"
         },
         {
           "id": "wxli2",
@@ -101,7 +102,8 @@
           "time": "2026-01-12 14:51",
           "sender": "李妃燕子99",
           "senderId": "li-feiyan",
-          "read": false
+          "read": false,
+          "avatar": "assets/avatars/avatar-3.jpg"
         },
         {
           "id": "wxli3",
@@ -110,7 +112,8 @@
           "time": "2026-01-12 14:56",
           "sender": "李妃燕子99",
           "senderId": "li-feiyan",
-          "read": false
+          "read": false,
+          "avatar": "assets/avatars/avatar-3.jpg"
         }
       ]
     },
@@ -129,7 +132,8 @@
           "time": "2026-01-12 14:12",
           "sender": "苏新皓",
           "senderId": "owner",
-          "outgoing": true
+          "outgoing": true,
+          "avatar": "assets/avatars/avatar-1.jpg"
         },
         {
           "id": "wxb2",
@@ -138,7 +142,8 @@
           "time": "2026-01-12 14:16",
           "sender": "苏新皓",
           "senderId": "owner",
-          "outgoing": true
+          "outgoing": true,
+          "avatar": "assets/avatars/avatar-1.jpg"
         },
         {
           "id": "wxb3",
@@ -147,7 +152,8 @@
           "time": "2026-01-12 14:22",
           "sender": "苏新皓",
           "senderId": "owner",
-          "outgoing": true
+          "outgoing": true,
+          "avatar": "assets/avatars/avatar-1.jpg"
         },
         {
           "id": "wxb4",
@@ -156,7 +162,8 @@
           "time": "2026-01-12 14:31",
           "sender": "苏新皓",
           "senderId": "owner",
-          "outgoing": true
+          "outgoing": true,
+          "avatar": "assets/avatars/avatar-1.jpg"
         },
         {
           "id": "wxb5",
@@ -165,7 +172,8 @@
           "time": "2026-01-12 14:43",
           "sender": "苏新皓",
           "senderId": "owner",
-          "outgoing": true
+          "outgoing": true,
+          "avatar": "assets/avatars/avatar-1.jpg"
         },
         {
           "id": "wxb6",
@@ -177,7 +185,8 @@
           "outgoing": true,
           "meta": {
             "autoType": "1800"
-          }
+          },
+          "avatar": "assets/avatars/avatar-1.jpg"
         }
       ]
     },
@@ -196,7 +205,8 @@
           "time": "2026-01-11 22:14",
           "sender": "苏新皓C位",
           "senderId": "suxinhao-c",
-          "read": true
+          "read": true,
+          "avatar": "assets/avatars/avatar-3-alt.jpg"
         },
         {
           "id": "wxc2",
@@ -205,7 +215,8 @@
           "time": "2026-01-11 22:17",
           "sender": "苏新皓C位",
           "senderId": "suxinhao-c",
-          "read": true
+          "read": true,
+          "avatar": "assets/avatars/avatar-3-alt.jpg"
         },
         {
           "id": "wxc3",
@@ -214,7 +225,8 @@
           "time": "2026-01-11 22:20",
           "sender": "苏新皓C位",
           "senderId": "suxinhao-c",
-          "read": true
+          "read": true,
+          "avatar": "assets/avatars/avatar-3-alt.jpg"
         }
       ]
     },
@@ -271,7 +283,8 @@
           "time": "2026-01-11 23:41",
           "sender": "苏新皓",
           "senderId": "owner",
-          "outgoing": true
+          "outgoing": true,
+          "avatar": "assets/avatars/avatar-1.jpg"
         },
         {
           "id": "sms4",
@@ -477,7 +490,8 @@
         "folder": "淋雨大吉",
         "meta": {
           "groupIntro": "一个专门收集碎碎念和现场瓜的小组。"
-        }
+        },
+        "avatar": "assets/douban/group-reference.jpg"
       },
       {
         "id": "douban1",
@@ -485,7 +499,8 @@
         "body": "",
         "time": "2026-01-12 13:10",
         "sender": "楼主",
-        "folder": "淋雨大吉"
+        "folder": "淋雨大吉",
+        "avatar": "assets/douban/group-reference.jpg"
       },
       {
         "id": "douban2",
@@ -493,7 +508,8 @@
         "body": "",
         "time": "2026-01-11 22:00",
         "sender": "匿名",
-        "folder": "淋雨大吉"
+        "folder": "淋雨大吉",
+        "avatar": "assets/douban/group-reference.jpg"
       }
     ],
     "weibo": [
@@ -509,7 +525,8 @@
           "following": "1",
           "weiboCount": "112",
           "ip": "北京"
-        }
+        },
+        "avatar": "assets/avatars/avatar-3.jpg"
       },
       {
         "id": "wb1",
@@ -517,7 +534,8 @@
         "body": "老公，你为什么不出门呢？为什么不出门呢？为什么不出门呢？好想进去啊……",
         "time": "2026-01-10 23:14",
         "sender": "m0on_7xq__",
-        "folder": "微博"
+        "folder": "微博",
+        "avatar": "assets/avatars/avatar-3.jpg"
       },
       {
         "id": "wb2",
@@ -525,7 +543,8 @@
         "body": "今年为什么看了那个女的一眼？真想把她的眼珠子挖出来，这样你就会只看着我了，哥哥，你是我的就好了。",
         "time": "2026-01-08 01:26",
         "sender": "m0on_7xq__",
-        "folder": "微博"
+        "folder": "微博",
+        "avatar": "assets/avatars/avatar-3.jpg"
       },
       {
         "id": "wb3",
@@ -533,7 +552,8 @@
         "body": "那群傻狗合伙给他们点✈️杯，神经，老公用我就够了，我会乖乖的👅干净的。",
         "time": "2026-01-05 20:38",
         "sender": "m0on_7xq__",
-        "folder": "微博"
+        "folder": "微博",
+        "avatar": "assets/avatars/avatar-3.jpg"
       },
       {
         "id": "wb4",
@@ -541,7 +561,8 @@
         "body": "搞到了他新的手机号，为什么不接电话？为什么不接电话？为什么不接电话？",
         "time": "2026-01-02 22:07",
         "sender": "m0on_7xq__",
-        "folder": "微博"
+        "folder": "微博",
+        "avatar": "assets/avatars/avatar-3.jpg"
       },
       {
         "id": "wb5",
@@ -549,7 +570,8 @@
         "body": "那谁的狗给我看了张照片，看来这团离倒闭不远了。",
         "time": "2025-12-29 18:19",
         "sender": "m0on_7xq__",
-        "folder": "微博"
+        "folder": "微博",
+        "avatar": "assets/avatars/avatar-3.jpg"
       },
       {
         "id": "wb6",
@@ -557,7 +579,8 @@
         "body": "ywy怎么还活着🖕🏻",
         "time": "2025-12-24 11:05",
         "sender": "m0on_7xq__",
-        "folder": "微博"
+        "folder": "微博",
+        "avatar": "assets/avatars/avatar-3.jpg"
       }
     ],
     "photos": [
