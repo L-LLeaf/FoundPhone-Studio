@@ -358,9 +358,12 @@ export function WeChatSkin(p: SkinProps) {
         </>
       ) : moments ? (
         <div className="wx-moments">
-          <div className="wx-moment-cover">
-            <Camera size={32} />
+          <div className="wx-moment-cover" style={{ backgroundImage: "url(assets/moments/moments-cover.jpg)" }}>
             <span>朋友圈</span>
+          </div>
+          <div className="wx-moment-profile">
+            <div><strong>{selfProfile?.title || "我"}</strong><p>{selfProfile?.meta?.signature || " "}</p></div>
+            <Avatar name={selfProfile?.title || "我"} src={selfProfile?.avatar} />
           </div>
           {posts.map((i) => (
             <button
@@ -368,12 +371,11 @@ export function WeChatSkin(p: SkinProps) {
               className="wx-moment-post"
               onClick={() => p.onItem(i)}
             >
-              <Avatar name={i.sender} />
-              <div>
-                <strong>{i.sender}</strong>
-                <p>{i.body}</p>
+              <div className="wx-moment-date"><strong>{i.id === "moments-jan23" ? "23" : "今天"}</strong>{i.id === "moments-jan23" && <small>1月</small>}</div>
+              <div className="wx-moment-content">
+                {i.body && <p>{i.body}</p>}
                 {i.media && <ItemMedia item={i} />}
-                <small>{i.time}</small>
+                <small>{i.id === "moments-jan23" ? " " : i.time.slice(11,16)}</small>
               </div>
             </button>
           ))}
