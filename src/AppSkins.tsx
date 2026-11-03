@@ -245,7 +245,9 @@ export function WeChatSkin(p: SkinProps) {
     >
       <div className="app-nav wx-nav">
         <button
-          aria-label={utility || p.thread || moments ? "返回" : "收藏"}
+          aria-label={
+            utility || p.thread || moments ? "返回" : "返回主屏幕"
+          }
           onClick={() =>
             utility
               ? setUtility("")
@@ -253,14 +255,10 @@ export function WeChatSkin(p: SkinProps) {
                 ? p.onThread("")
                 : moments
                   ? setMoments(false)
-                  : setUtility("收藏")
+                  : p.onBack()
           }
         >
-          {utility || p.thread || moments ? (
-            <ChevronLeft size={22} />
-          ) : (
-            <Star size={22} />
-          )}
+          <ChevronLeft size={22} />
         </button>
         <strong>
           {utility ||
