@@ -267,7 +267,7 @@ function PhoneRuntime({
       if (!recent.includes(id) && id !== app) appSnapshots.current.delete(id);
   };
   const open = (id: string) => {
-    if (id === "contacts") return;
+    if (id === "contacts" || id === "clock") return;
     if (!work.apps.some((a) => a.id === id && a.installed)) return;
     setApp(id);
     setKeyboard(false);
