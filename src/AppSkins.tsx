@@ -174,7 +174,7 @@ export function WeChatSkin(p: SkinProps) {
     "readThreads",
     [],
   );
-  const [typedIds, setTypedIds] = useSkinState<string[]>(p, "typedIds", []);
+  const [typedIds, setTypedIds] = useState<string[]>([]);
   const [typingFor, setTypingFor] = useState("");
   const [typingText, setTypingText] = useState("");
   const [sending, setSending] = useState(false);

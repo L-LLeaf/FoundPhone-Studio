@@ -83,7 +83,11 @@ export function NativeDetail({
         <>
           <div className="native-photo-stage">
             {media ? (
-              <img src={media} alt={item.title} />
+              item.kind === "video" ? (
+                <video src={media} controls playsInline preload="metadata" />
+              ) : (
+                <img src={media} alt={item.title} />
+              )
             ) : (
               <div className="native-photo-caption">
                 <h2>{item.title}</h2>

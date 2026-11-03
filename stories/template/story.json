@@ -660,10 +660,12 @@
         "meta": {
           "groupIntro": "我也是个念旧的人。"
         },
-        "avatar": "assets/douban/group-avatar.jpg",
         "comments": [
-          "momo：0",
-          "为什么要上班：0"
+          "momo：这楼标题我先存了，等一个后续。",
+          "今天也不想上班：谁懂啊，最近真的越来越离谱。",
+          "小狗观察员：别吵了，先说到底发生什么了？",
+          "匿名用户：看完只想说，互联网不是法外之地。",
+          "楼主回复：我也只是把看到的事情搬过来。"
         ]
       },
       {
@@ -673,8 +675,12 @@
         "time": "2026-01-12 13:10",
         "sender": "楼主",
         "folder": "淋雨大吉",
-        "avatar": "assets/douban/group-avatar.jpg",
-        "comments": []
+        "comments": [
+          "momo：真的假的？有现场图吗？",
+          "吃瓜不信瓜：先蹲一个后续，别急着下结论。",
+          "今天放假吗：这两天群里都在传。",
+          "楼主回复：目前只听说有人吵起来了。"
+        ]
       },
       {
         "id": "douban2",
@@ -683,8 +689,12 @@
         "time": "2026-01-11 22:00",
         "sender": "匿名",
         "folder": "淋雨大吉",
-        "avatar": "assets/douban/group-avatar.jpg",
-        "comments": []
+        "comments": [
+          "momo：楼主你先冷静一下哈哈哈。",
+          "今天也在淋雨：标题怎么还带省略号，后续呢？",
+          "匿名用户：我不行了，点进来就看到这个。",
+          "楼主回复：没后续了，大家自行理解。"
+        ]
       }
     ],
     "weibo": [
@@ -701,7 +711,7 @@
           "weiboCount": "112",
           "ip": "北京"
         },
-        "avatar": "assets/111.png"
+        "avatar": "assets/avatars/weibo-avatar.jpg"
       },
       {
         "id": "wb1",
@@ -710,7 +720,7 @@
         "time": "2026-01-10 23:14",
         "sender": "m0on_7xq__",
         "folder": "微博",
-        "avatar": "assets/111.png"
+        "avatar": "assets/avatars/weibo-avatar.jpg"
       },
       {
         "id": "wb2",
@@ -719,7 +729,7 @@
         "time": "2026-01-08 01:26",
         "sender": "m0on_7xq__",
         "folder": "微博",
-        "avatar": "assets/111.png"
+        "avatar": "assets/avatars/weibo-avatar.jpg"
       },
       {
         "id": "wb3",
@@ -728,7 +738,7 @@
         "time": "2026-01-05 20:38",
         "sender": "m0on_7xq__",
         "folder": "微博",
-        "avatar": "assets/111.png"
+        "avatar": "assets/avatars/weibo-avatar.jpg"
       },
       {
         "id": "wb4",
@@ -737,7 +747,7 @@
         "time": "2026-01-02 22:07",
         "sender": "m0on_7xq__",
         "folder": "微博",
-        "avatar": "assets/111.png"
+        "avatar": "assets/avatars/weibo-avatar.jpg"
       },
       {
         "id": "wb5",
@@ -746,7 +756,7 @@
         "time": "2025-12-29 18:19",
         "sender": "m0on_7xq__",
         "folder": "微博",
-        "avatar": "assets/111.png"
+        "avatar": "assets/avatars/weibo-avatar.jpg"
       },
       {
         "id": "wb6",
@@ -755,7 +765,7 @@
         "time": "2025-12-24 11:05",
         "sender": "m0on_7xq__",
         "folder": "微博",
-        "avatar": "assets/111.png"
+        "avatar": "assets/avatars/weibo-avatar.jpg"
       }
     ],
     "photos": [
@@ -910,29 +920,18 @@
           "wechatId": "SXHCWEI",
           "signature": "You either win with us or you watch us win."
         },
-        "avatar": "assets/222.jpg"
-      },
-      {
-        "id": "moments-today",
-        "title": "朋友圈",
-        "body": "老公，想拍你一辈子🥺",
-        "time": "2026-01-12 21:20",
-        "sender": "sxh的🐶",
-        "folder": "朋友圈",
-        "kind": "image",
-        "media": "assets/moments/moments-post-camera.jpg",
-        "avatar": "assets/222.jpg"
+        "avatar": "assets/avatars/wechat-avatar.jpg"
       },
       {
         "id": "moments-jan08",
         "title": "朋友圈",
-        "body": "",
+        "body": "老公，想拍你一辈子🥺",
         "time": "2026-01-08 10:23",
         "sender": "sxh的🐶",
         "folder": "朋友圈",
         "kind": "image",
-        "media": "assets/moments/moments-post-cat.jpg",
-        "avatar": "assets/222.jpg"
+        "media": "assets/moments/moments-post-camera.jpg",
+        "avatar": "assets/avatars/wechat-avatar.jpg"
       }
     ]
   },
