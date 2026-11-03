@@ -553,9 +553,6 @@ export function WeChatSkin(p: SkinProps) {
                   );
                 })}
               </div>
-              {selfProfile?.meta?.signature && (
-                <p className="wx-profile-signature">{selfProfile.meta.signature}</p>
-              )}
               {p.creator && (
                 <button className="phone-add" onClick={p.onAdd}>
                   编辑个人资料内容
