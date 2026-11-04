@@ -16,7 +16,8 @@
     "story:validate": "node scripts/story.mjs validate",
     "story:build": "node scripts/story.mjs build",
     "story:preview": "npm run dev",
-    "story:test": "node scripts/story.mjs test"
+    "story:test": "node scripts/story.mjs test",
+    "prebuild": "node scripts/prepare-phone-assets.mjs"
   },
   "dependencies": {
     "@tiptap/react": "^3.0.0",
