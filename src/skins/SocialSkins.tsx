@@ -534,7 +534,6 @@ export function ForumSkin(p: Props) {
       <div className="douban-red-head">
         <div className="douban-topline">
           <button aria-label="返回" onClick={p.onBack}><ChevronLeft size={23}/></button>
-          <button aria-label="更多" className="douban-more">•••</button>
         </div>
         <div className="douban-group-summary">
           <Avatar name={groupName} src={groupItem?.avatar || "assets/douban/group-reference.jpg"}/>
