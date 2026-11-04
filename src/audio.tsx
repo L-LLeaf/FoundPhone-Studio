@@ -82,7 +82,7 @@ export function AudioPlayer({ p, item }: { p: SkinProps; item: Item }) {
     <div className="phone-audio-player">
       <audio
         ref={element}
-        preload="metadata"
+        preload="none"
         src={safeMedia(item.media)}
         aria-label={`播放${item.title}`}
         onLoadedMetadata={(e) => setDuration(Number.isFinite(e.currentTarget.duration) ? Math.min(e.currentTarget.duration, limit) : limit)}
