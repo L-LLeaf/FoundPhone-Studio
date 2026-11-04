@@ -20,7 +20,18 @@ export default defineConfig(({ command }) => ({
       },
       workbox: {
         clientsClaim: true,
-        globPatterns: ["**/*.{js,css,html,svg,json,txt,png,jpg}"],
+        globPatterns: ["**/*.{js,css,html,svg,json,txt}"],
+        // Keep large user photos out of the install-time precache. They are fetched only when a screen needs them.
+        runtimeCaching: [
+          {
+            urlPattern: /\\/assets\\/.*\\.(?:png|jpe?g|webp|avif)$/i,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "phone-images",
+              expiration: { maxEntries: 60, maxAgeSeconds: 60 * 60 * 24 * 30 },
+            },
+          },
+        ],
         maximumFileSizeToCacheInBytes: 8000000,
       },
     }),
