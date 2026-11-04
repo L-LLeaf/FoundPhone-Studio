@@ -24,7 +24,7 @@ export function AudioPlayer({ p, item }: { p: SkinProps; item: Item }) {
   const [error, setError] = useState("");
   const key = `audio-${item.id}`;
   const saved = p.ui?.[key];
-  const limit = 60;
+  const limit = 30;
   const commit = (time: number, force = false) => {
     if (!p.onUi || !Number.isFinite(time)) return;
     if (force || Math.abs(time - last.current) >= 5) {
@@ -144,7 +144,7 @@ export function AudioPlayer({ p, item }: { p: SkinProps; item: Item }) {
         </div>
       </div>
       {error ? <small className="phone-audio-error">{error}</small> : null}
-      <small className="phone-audio-limit">试听 1 分钟</small>
+      <small className="phone-audio-limit">试听 30 秒</small>
     </div>
   );
 }
