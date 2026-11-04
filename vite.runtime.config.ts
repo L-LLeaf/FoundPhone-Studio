@@ -24,7 +24,7 @@ export default defineConfig(({ command }) => ({
         // Keep large user photos out of the install-time precache. They are fetched only when a screen needs them.
         runtimeCaching: [
           {
-            urlPattern: /\\/assets\\/.*\\.(?:png|jpe?g|webp|avif)$/i,
+            urlPattern: /\/assets\/.*\.(?:png|jpe?g|webp|avif)$/i,
             handler: "CacheFirst",
             options: {
               cacheName: "phone-images",
